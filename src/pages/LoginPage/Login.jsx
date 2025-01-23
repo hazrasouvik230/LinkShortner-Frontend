@@ -86,7 +86,7 @@ const Login = () => {
 
   return (
     <div className={styles.loginContainer}>
-      <ToastContainer position="top-right" autoClose={3000} />
+      <ToastContainer position="top-right" autoClose={2000} />
       <div className={styles.leftContainer}>
         <img src="./Login.png" alt="" />
       </div>
