@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import styles from './Login.module.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
   const [state, setState] = useState('Signup');
@@ -51,20 +53,20 @@ const Login = () => {
       setErrors({});
       try {
         if (state === 'Signup') {
-          // Send signup data
-          const response = await axios.post('/api/user/signup', formData);
-          alert(response.data.message); // Show success message
+          const response = await axios.post('http://localhost:5000/api/user/signup', formData);
+          toast.success(response.data.message, {
+            onClose: () => navigate('/dashboard'), // Navigate after toast closes
+          });
         } else {
-          // Send login data
-          const response = await axios.post('/api/user/login', {
+          const response = await axios.post('http://localhost:5000/api/user/login', {
             email: formData.email,
             password: formData.password,
           });
-          alert(response.data.message); // Show success message
-          localStorage.setItem('token', response.data.token); // Save JWT token for future use
+          toast.success(response.data.message, {
+            onClose: () => navigate('/dashboard'), // Navigate after toast closes
+          });
+          localStorage.setItem('token', response.data.token);
         }
-        navigate('/dashboard');
-        // Reset form
         setFormData({
           name: '',
           email: '',
@@ -74,16 +76,17 @@ const Login = () => {
         });
       } catch (error) {
         if (error.response) {
-          alert(error.response.data.error); // Show error from backend
+          toast.error(error.response.data.error);
         } else {
-          alert('An error occurred. Please try again.');
+          toast.error('An error occurred. Please try again.');
         }
       }
     }
-  };  
+  };
 
   return (
     <div className={styles.loginContainer}>
+      <ToastContainer position="top-right" autoClose={3000} />
       <div className={styles.leftContainer}>
         <img src="./Login.png" alt="" />
       </div>
