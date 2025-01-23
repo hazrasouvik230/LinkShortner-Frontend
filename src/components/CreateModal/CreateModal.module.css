@@ -1,0 +1,192 @@
+/* CreateModal.module.css */
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+  
+.modalOverlay .modal {
+    background: #ffffff;
+    border-radius: 0.5rem;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.3s ease;
+}
+  
+.modalOverlay .modal .modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: rgba(59, 60, 81, 1);
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+}
+  
+.modalOverlay .modal .modalHeader h2 {
+    margin: 0;
+    font-size: 1rem;
+    color: white;
+}
+  
+.modalOverlay .modal .modalHeader .closeButton {
+    background: none;
+    color: white;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+}
+  
+.modalOverlay .modal .modalBody {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.modalOverlay .modal .modalBody .destination, .modalOverlay .modal .modalBody .remarks, .modalOverlay .modal .modalBody .expire {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+  
+.modalOverlay .modal .modalBody .destination label, .modalOverlay .modal .modalBody .remarks label {
+    display: flex;
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgba(59, 60, 81, 1);
+    gap: 0.5rem;
+}
+
+.modalOverlay .modal .modalBody .destination label span, .modalOverlay .modal .modalBody .remarks label span {
+    color: red;
+}
+  
+.modalOverlay .modal .modalBody input,
+.modalOverlay .modal .modalBody textarea {
+    width: calc(100% - 1.5rem);
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.modalOverlay .modal .modalBody textarea {
+    height: 5rem;
+}
+  
+.modalOverlay .modal .modalBody input:focus,
+.modalOverlay .modal .modalBody textarea:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+.modalOverlay .modal .modalBody .expire {
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgba(59, 60, 81, 1);
+}
+
+.modalOverlay .modal .modalBody .expire .toggleBtn {
+    width: 50px;
+    height: 25px;
+    background-color: #ccc;
+    border-radius: 15px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+  
+.modalOverlay .modal .modalBody .expire .toggleBtn::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 21px;
+    height: 21px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.modalOverlay .modal .modalBody .expire .toggleBtn.active {
+    background: rgba(27, 72, 218, 1);
+}
+
+.modalOverlay .modal .modalBody .expire .toggleBtn.active::before {
+    transform: translateX(25px);
+}
+
+.expDate {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgba(59, 60, 81, 1);
+}
+  
+.modalOverlay .modal .modalFooter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: rgba(59, 60, 81, 0.1);
+}
+  
+.modalOverlay .modal .modalFooter .clearButton,
+.modalOverlay .modal .modalFooter .createButton {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+  
+.modalOverlay .modal .modalFooter .clearButton {
+    background: #f5f5f5;
+    color: rgba(59, 60, 81, 1);
+    font-size: 1rem;
+    font-weight: 600;
+}
+  
+.modalOverlay .modal .modalFooter .clearButton:hover {
+    background: #e0e0e0;
+}
+
+.modalOverlay .modal .modalFooter .createButton {
+    background: rgba(27, 72, 218, 1);
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.error {
+    color: red;
+    font-size: 0.6rem;
+    margin-top: -0.25rem;
+    margin-left: 0.25rem;
+}  
+  
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+}

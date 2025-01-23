@@ -1,0 +1,13 @@
+.links {
+    display: flex;
+    height: 100vh;
+}
+
+.links .leftContainer {
+    width: 20%;
+    border-right: 1px solid lightgray;
+}
+
+.links .rightContainer {
+    width: 80%;
+}

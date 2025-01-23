@@ -1,0 +1,28 @@
+.sidebar .logoContainer {
+    padding: 1.5rem;
+}
+
+.sidebar .sideItemsContainer {
+    padding: 0.75rem;
+}
+
+.sidebar .sideItemsContainer .sideItem {
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+}
+
+.sidebar .sideItemsContainer .sideItem:hover {
+    background: rgba(243, 247, 253, 1);
+    color: rgba(27, 72, 218, 1);
+    cursor: pointer;
+}
+
+.sidebar .sideItemsContainer .sideItem.active {
+    background: rgba(243, 247, 253, 1);
+    color: rgba(27, 72, 218, 1);
+}

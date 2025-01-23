@@ -1,0 +1,13 @@
+.settings {
+    display: flex;
+    height: 100vh;
+}
+
+.settings .leftContainer {
+    width: 20%;
+    border-right: 1px solid lightgray;
+}
+
+.settings .rightContainer {
+    width: 80%;
+}

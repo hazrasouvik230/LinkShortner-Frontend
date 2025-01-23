@@ -1,0 +1,82 @@
+.loginContainer {
+    display: flex;
+}
+
+.loginContainer .leftContainer {
+    width: 50%;
+}
+
+.loginContainer .leftContainer img {
+    width: 100%;
+    height: 100vh;
+}
+
+.loginContainer .rightContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 50%;
+}
+
+.loginContainer .rightContainer .navbar {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.loginContainer .rightContainer .navbar .navItem {
+    padding: .5rem 1rem;
+    border: none;
+    border-radius: .25rem;
+    cursor: pointer;
+}
+
+.loginContainer .rightContainer .navbar .navItem.active {
+    background: rgba(27, 72, 218, 1);
+    color: white;
+}
+
+.loginContainer .rightContainer form {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+
+.loginContainer .rightContainer form input, .loginContainer .rightContainer form button {
+    padding: .7rem 1rem;
+    margin-bottom: 1.2rem;
+    border: 1px solid rgba(59, 60, 81, 1);
+    border-radius: .25rem;
+}
+
+.loginContainer .rightContainer form button {
+    background: rgba(27, 72, 218, 1);
+    color: white;
+    border: 1px solid rgba(27, 72, 218, 1);
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.loginContainer .rightContainer h2 {
+    text-align: start;
+    margin-bottom: 2rem;
+}
+
+.loginContainer .rightContainer p span {
+    color: rgba(27, 72, 218, 1);
+    cursor: pointer;
+}
+
+
+
+.error {
+    color: red;
+    font-size: .6rem;
+    margin-top: -1.2rem;
+    margin-left: .2rem;
+    margin-bottom: 10px;
+  }
+  

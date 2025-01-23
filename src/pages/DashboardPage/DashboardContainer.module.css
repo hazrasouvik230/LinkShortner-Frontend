@@ -1,0 +1,65 @@
+.dashboardContainer {
+    height: calc(91vh - 65px);
+    /* background: lightblue; */
+    padding: 2rem;
+}
+
+.dashboardContainer h2 {
+    margin: 3rem 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.dashboardContainer .totalClicks {
+    color: blue;
+    margin-left: 2rem;
+}
+  
+.dashboardContainer .chartsContainer {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.25rem;
+    height: 60%;
+}
+  
+.dashboardContainer .chartsContainer .chart {
+    width: 48%;
+    height: 100%;
+    padding: 1.5rem;
+    border: 1px solid rgba(236, 236, 242, 1);
+    border-radius: 0.5rem;
+}
+  
+.dashboardContainer .chartsContainer .chart h3 {
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: rgba(27, 72, 218, 1);
+  }
+  
+.dashboardContainer .chartsContainer .chart .barContainer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: rgba(59, 60, 81, 1);
+}
+  
+.dashboardContainer .chartsContainer .chart .barContainer span:first-child {
+    flex: 1;
+}
+  
+.dashboardContainer .chartsContainer .chart .barContainer .bar {
+    flex: 2;
+    height: 12px;
+    background-color: blue;
+    margin: 0 10px;
+    transition: width 0.3s ease;
+}
+  
+.dashboardContainer .chartsContainer .chart .barContainer span:last-child {
+    flex: 0.5;
+    font-size: 14px;
+    text-align: right;
+}
