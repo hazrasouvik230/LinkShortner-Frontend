@@ -4,7 +4,7 @@ import Sidebar from '../../components/Sidebar/Sidebar'
 import Navbar from '../../components/Navbar/Navbar'
 import SettingsContainer from './SettingsContainer'
 
-const Settings = ({ links, addNewLink }) => {
+const Settings = ({ links, addNewLink, user }) => {
   return (
     <div className={styles.settings}>
         <div className={styles.leftContainer}>
@@ -12,7 +12,7 @@ const Settings = ({ links, addNewLink }) => {
         </div>
 
         <div className={styles.rightContainer}>
-            <Navbar addNewLink={addNewLink} />
+            <Navbar userName={user?.name} addNewLink={addNewLink} />
             <SettingsContainer links={links} />
         </div>
     </div>

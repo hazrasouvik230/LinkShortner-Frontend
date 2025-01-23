@@ -4,14 +4,14 @@ import Sidebar from '../../components/Sidebar/Sidebar';
 import Navbar from '../../components/Navbar/Navbar';
 import LinksContainer from './LinksContainer';
 
-const Links = ({ links, addNewLink, setLinks }) => {
+const Links = ({ links, addNewLink, setLinks, user }) => {
   return (
     <div className={styles.links}>
       <div className={styles.leftContainer}>
         <Sidebar />
       </div>
       <div className={styles.rightContainer}>
-        <Navbar addNewLink={addNewLink} />
+        <Navbar userName={user?.name} addNewLink={addNewLink} />
         <LinksContainer links={links} setLinks={setLinks} />
       </div>
     </div>
