@@ -4,7 +4,7 @@ import Sidebar from '../../components/Sidebar/Sidebar'
 import Navbar from '../../components/Navbar/Navbar'
 import AnalyticsContainer from './AnalyticsContainer'
 
-const Analytics = ({ links, addNewLink, user }) => {
+const Analytics = ({ links, addNewLink, user, analytics }) => {
   return (
     <div className={styles.analytics}>
         <div className={styles.leftContainer}>
@@ -13,7 +13,7 @@ const Analytics = ({ links, addNewLink, user }) => {
 
         <div className={styles.rightContainer}>
             <Navbar userName={user?.name} addNewLink={addNewLink} />
-            <AnalyticsContainer links={links} />
+            <AnalyticsContainer links={links} analytics={analytics} />
         </div>
     </div>
   )

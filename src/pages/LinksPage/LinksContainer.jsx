@@ -1,20 +1,23 @@
 import React from 'react';
 import styles from './LinksContainer.module.css';
 
-const LinksContainer = ({ links, setLinks }) => {
-  const incrementClickCount = (id) => {
+const LinksContainer = ({ links, setLinks, addAnalyticsEntry }) => {
+  const incrementClickCount = (id, originalLink, shortLink) => {
     const updatedLinks = links.map((link) =>
       link.id === id ? { ...link, clicks: link.clicks + 1 } : link
     );
     setLinks(updatedLinks);
-  };
 
-  const handleEdit = (id) => {
-    alert(`Edit link with ID: ${id}`);
-  };
-
-  const handleDelete = (id) => {
-    setLinks(links.filter((link) => link.id !== id));
+    // Add new analytics entry
+    const newEntry = {
+      id,
+      timestamp: new Date().toLocaleString(),
+      originalLink,
+      shortLink,
+      ipAddress: "192.158.1.38", // Mocked data; replace with real data if available
+      userDevice: "Unknown", // Replace with real device info if available
+    };
+    addAnalyticsEntry(newEntry);
   };
 
   return (
@@ -41,13 +44,20 @@ const LinksContainer = ({ links, setLinks }) => {
                 </a>
               </td>
               <td>
-                <a href={link.shortLink} target="_blank" rel="noopener noreferrer" onClick={() => incrementClickCount(link.id)}>
+                <a
+                  href={link.shortLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() =>
+                    incrementClickCount(link.id, link.originalLink, link.shortLink)
+                  }
+                >
                   {link.shortLink}
                 </a>
               </td>
               <td>{link.remarks}</td>
               <td>{link.clicks}</td>
-              <td className={link.status === 'Active' ? styles.active : styles.inactive}>
+              <td className={link.status === "Active" ? styles.active : styles.inactive}>
                 {link.status}
               </td>
               <td>
