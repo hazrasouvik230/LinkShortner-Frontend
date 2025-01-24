@@ -12,25 +12,27 @@ const App = () => {
   const [links, setLinks] = useState([]);
   const [user, setUser] = useState(null); // User state
 
-  // Fetch user data
   const fetchUser = async () => {
     const token = localStorage.getItem("token");
+    console.log("Token:", token); // Debug: Check if token exists
     if (!token) return;
-
+  
     try {
       const response = await axios.get("http://localhost:5000/api/user/me", {
         headers: { Authorization: `Bearer ${token}` },
       });
+      console.log("Fetched user:", response.data.user); // Debug: Log fetched user data
       setUser(response.data.user);
     } catch (error) {
       console.error("Error fetching user:", error);
-      localStorage.removeItem("token"); // Clear token on error
+      localStorage.removeItem("token");
     }
   };
-
+  
   useEffect(() => {
+    console.log("useEffect ran");
     fetchUser();
-  }, []);
+  }, []);  
 
   const addNewLink = (newLink) => {
     const updatedLinks = [...links];

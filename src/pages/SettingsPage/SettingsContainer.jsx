@@ -1,12 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./SettingsContainer.module.css";
 
-const ProfileForm = () => {
+const SettingsContainer = ({ user }) => {
   const [formData, setFormData] = useState({
-    name: "Rahul Singh",
-    email: "rahulsingh@gmail.com",
-    mobile: "1234567890",
+    name: "",
+    email: "",
+    mobile: "",
   });
+
+  useEffect(() => {
+    // Populate form data when the user prop is received
+    if (user) {
+      setFormData({
+        name: user.name || "",
+        email: user.email || "",
+        mobile: user.ph || "",
+      });
+    }
+  }, [user]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -16,14 +27,52 @@ const ProfileForm = () => {
     }));
   };
 
-  const handleSave = () => {
-    alert("Changes Saved");
-    console.log("Saved Data:", formData);
+  const handleSave = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/api/user/update", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        alert("Changes saved successfully");
+        const updatedUser = await response.json();
+        console.log("Updated User:", updatedUser);
+      } else {
+        alert("Failed to save changes");
+      }
+    } catch (error) {
+      console.error("Error saving changes:", error);
+      alert("An error occurred while saving changes");
+    }
   };
 
-  const handleDelete = () => {
-    alert("Account Deleted");
-    // Add delete logic here
+  const handleDelete = async () => {
+    if (window.confirm("Are you sure you want to delete your account?")) {
+      try {
+        const response = await fetch("http://localhost:5000/api/user/delete", {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+
+        if (response.ok) {
+          alert("Account deleted successfully");
+          localStorage.removeItem("token");
+          window.location.href = "/";
+        } else {
+          alert("Failed to delete account");
+        }
+      } catch (error) {
+        console.error("Error deleting account:", error);
+        alert("An error occurred while deleting the account");
+      }
+    }
   };
 
   return (
@@ -71,4 +120,4 @@ const ProfileForm = () => {
   );
 };
 
-export default ProfileForm;
+export default SettingsContainer;
