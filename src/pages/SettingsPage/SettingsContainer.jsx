@@ -58,30 +58,6 @@ const SettingsContainer = ({ user }) => {
     }
   };
 
-  // const handleDelete = async () => {
-  //   if (window.confirm("Are you sure you want to delete your account?")) {
-  //     try {
-  //       const response = await fetch("http://localhost:5000/api/user/delete", {
-  //         method: "DELETE",
-  //         headers: {
-  //           Authorization: `Bearer ${localStorage.getItem("token")}`,
-  //         },
-  //       });
-
-  //       if (response.ok) {
-  //         alert("Account deleted successfully");
-  //         localStorage.removeItem("token");
-  //         window.location.href = "/";
-  //       } else {
-  //         alert("Failed to delete account");
-  //       }
-  //     } catch (error) {
-  //       console.error("Error deleting account:", error);
-  //       alert("An error occurred while deleting the account");
-  //     }
-  //   }
-  // };
-
   return (
     <div className={styles.settingsContainer}>
       <div className={styles.inputSections}>

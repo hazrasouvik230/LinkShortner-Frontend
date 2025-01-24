@@ -1,18 +1,11 @@
-import React, {useState} from "react";
+import React from "react";
 import styles from './DeleteAccountModal.module.css'
+import { useNavigate } from "react-router-dom";
 
 const DeleteAccountModal = ({onClose}) => {
-//   const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
 
-//   const openModal = () => setIsModalOpen(true);
-//   const closeModal = () => setIsModalOpen(false);
-
-//   const handleDelete = () => {
-//     alert("Account deleted successfully!"); // Replace with your logic
-//     // closeModal();
-//   };
-
-const handleDelete = async () => {
+  const handleDelete = async () => {
     try {
       const response = await fetch("http://localhost:5000/api/user/delete", {
         method: "DELETE",
@@ -24,7 +17,7 @@ const handleDelete = async () => {
       if (response.ok) {
         alert("Account deleted successfully");
         localStorage.removeItem("token");
-        window.location.href = "/";
+        navigate("/");
       } else {
         alert("Failed to delete account");
       }
