@@ -16,6 +16,22 @@ const Navbar = ({ userName = "User", addNewLink }) => {
     setShowModal(!showModal);
   };
 
+  const handleLogout = () => {
+    // Remove token from localStorage
+    localStorage.removeItem("token");
+  
+    // Optionally, you can call the logout route to ensure proper logging
+    axios.post("http://localhost:5000/api/user/logout")
+      .then(() => {
+        alert("You have been logged out");
+        // Redirect to the login page
+        window.location.href = "/";
+      })
+      .catch((error) => {
+        console.error("Error logging out:", error);
+      });
+  };  
+
   useEffect(() => {
     const now = new Date();
     const options = { weekday: "short", month: "short", day: "numeric" };
@@ -54,7 +70,7 @@ const Navbar = ({ userName = "User", addNewLink }) => {
           <span className={styles.profileInitials}>{userName.slice(0, 2).toUpperCase()}</span>
         </div>
       </div>
-      {visible && <div className={styles.logout}>Logout</div>}
+      {visible && <div className={styles.logout} onClick={handleLogout}>Logout</div>}
       {showModal && (
         <CreateModal
           onClose={toggleModal}
