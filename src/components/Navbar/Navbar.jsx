@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Navbar.module.css";
 import CreateModal from "../CreateModal/CreateModal";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Navbar = ({ userName = "User", addNewLink }) => {
   const [currentDate, setCurrentDate] = useState("");
   const [greeting, setGreeting] = useState({ text: "", emoji: "" });
   const [visible, setVisible] = useState(false);
   const [showModal, setShowModal] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleVisible = () => {
     setVisible(!visible);
@@ -23,12 +29,12 @@ const Navbar = ({ userName = "User", addNewLink }) => {
     // Optionally, you can call the logout route to ensure proper logging
     axios.post("http://localhost:5000/api/user/logout")
       .then(() => {
-        alert("You have been logged out");
-        // Redirect to the login page
-        window.location.href = "/";
+        toast.success("You have been logged out");
+        navigate("/");
       })
       .catch((error) => {
         console.error("Error logging out:", error);
+        toast.error("Failed to logout. Try again.");
       });
   };  
 
@@ -52,6 +58,7 @@ const Navbar = ({ userName = "User", addNewLink }) => {
 
   return (
     <div className={styles.navbar}>
+      <ToastContainer position="top-right" autoClose={2000} />
       <div>
         <div className={styles.greeting}>
           <span role="img" aria-label="emoji">{greeting.emoji}</span> {greeting.text}, {userName}
