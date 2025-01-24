@@ -11,8 +11,8 @@ import axios from "axios";
 const App = () => {
   const [links, setLinks] = useState([]);
   const [user, setUser] = useState(null); // User state
-
   const [analytics, setAnalytics] = useState([]);
+  
   const addAnalyticsEntry = (entry) => {
     setAnalytics((prevAnalytics) => [...prevAnalytics, entry]);
   };

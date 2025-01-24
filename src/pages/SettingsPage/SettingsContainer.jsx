@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./SettingsContainer.module.css";
+import DeleteAccountModal from "../../components/DeleteModal/DeleteAccountModal";
 
 const SettingsContainer = ({ user }) => {
   const [formData, setFormData] = useState({
@@ -7,6 +8,12 @@ const SettingsContainer = ({ user }) => {
     email: "",
     mobile: "",
   });
+
+  const [deleteVisible, setDeleteVisible] = useState(false);
+
+  const handleDeleteVisible = () => {
+    setDeleteVisible(!deleteVisible);
+  }
 
   useEffect(() => {
     // Populate form data when the user prop is received
@@ -51,29 +58,29 @@ const SettingsContainer = ({ user }) => {
     }
   };
 
-  const handleDelete = async () => {
-    if (window.confirm("Are you sure you want to delete your account?")) {
-      try {
-        const response = await fetch("http://localhost:5000/api/user/delete", {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        });
+  // const handleDelete = async () => {
+  //   if (window.confirm("Are you sure you want to delete your account?")) {
+  //     try {
+  //       const response = await fetch("http://localhost:5000/api/user/delete", {
+  //         method: "DELETE",
+  //         headers: {
+  //           Authorization: `Bearer ${localStorage.getItem("token")}`,
+  //         },
+  //       });
 
-        if (response.ok) {
-          alert("Account deleted successfully");
-          localStorage.removeItem("token");
-          window.location.href = "/";
-        } else {
-          alert("Failed to delete account");
-        }
-      } catch (error) {
-        console.error("Error deleting account:", error);
-        alert("An error occurred while deleting the account");
-      }
-    }
-  };
+  //       if (response.ok) {
+  //         alert("Account deleted successfully");
+  //         localStorage.removeItem("token");
+  //         window.location.href = "/";
+  //       } else {
+  //         alert("Failed to delete account");
+  //       }
+  //     } catch (error) {
+  //       console.error("Error deleting account:", error);
+  //       alert("An error occurred while deleting the account");
+  //     }
+  //   }
+  // };
 
   return (
     <div className={styles.settingsContainer}>
@@ -113,9 +120,10 @@ const SettingsContainer = ({ user }) => {
         Save Changes
       </button>
 
-      <button onClick={handleDelete}>
+      <button onClick={handleDeleteVisible}>
         Delete Account
       </button>
+      {deleteVisible && <DeleteAccountModal onClose={handleDeleteVisible} />}
     </div>
   );
 };

@@ -1,0 +1,65 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalOverlay .modalContainer {
+  background: white;
+  padding: 3rem 2rem;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modalOverlay .modalContainer h2 {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.modalOverlay .modalContainer .modalActions {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  font-size: 1.2rem;
+}
+
+.modalOverlay .modalContainer .modalActions button {
+  width: 12rem;
+}
+
+.modalOverlay .modalContainer .modalActions .btnSecondary {
+  padding: 10px 20px;
+  background: rgba(236, 236, 238, 1);
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modalOverlay .modalContainer .modalActions .btnSecondary:hover {
+  background: yellowgreen;
+  transition: all 0.3s ease;
+}
+
+.modalOverlay .modalContainer .modalActions .btnPrimary {
+  padding: 10px 20px;
+  background: rgba(27, 72, 218, 1);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modalOverlay .modalContainer .modalActions .btnPrimary:hover {
+  background: red;
+  transition: all 0.3s ease;
+}
