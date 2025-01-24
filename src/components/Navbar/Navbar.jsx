@@ -58,7 +58,7 @@ const Navbar = ({ userName = "User", addNewLink }) => {
 
   return (
     <div className={styles.navbar}>
-      <ToastContainer position="top-right" autoClose={2000} />
+      {/* <ToastContainer position="top-right" autoClose={2000} /> */}
       <div>
         <div className={styles.greeting}>
           <span role="img" aria-label="emoji">{greeting.emoji}</span> {greeting.text}, {userName}
