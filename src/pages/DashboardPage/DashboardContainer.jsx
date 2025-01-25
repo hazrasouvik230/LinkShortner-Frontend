@@ -1,22 +1,41 @@
 import React from 'react';
 import styles from './DashboardContainer.module.css';
 
-const DashboardContainer = ({ totalClicks }) => {
-  // Sample data for date-wise clicks and click devices
-  const dateWiseClicks = [
-    { date: '21-01-25', clicks: 1234 }, // take it as 100%
-    { date: '20-01-25', clicks: 1140 },
-    { date: '19-01-25', clicks: 134 },
-    { date: '18-01-25', clicks: 34 },
-  ];
+const DashboardContainer = ({ totalClicks, links }) => {
+  // Function to format date to 'dd-mm-yy'
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
+    const year = String(date.getFullYear()).slice(2); // Get last two digits of the year
+    return `${day}-${month}-${year}`;
+  };
 
+  // Aggregate clicks by date
+  const dateWiseClicks = links.reduce((acc, link) => {
+    const formattedDate = formatDate(link.date); // Use formatDate function to format date
+    if (acc[formattedDate]) {
+      acc[formattedDate] += link.clicks;
+    } else {
+      acc[formattedDate] = link.clicks;
+    }
+    return acc;
+  }, {});
+
+  // Convert the aggregated data into an array for display
+  const dateWiseClicksArray = Object.keys(dateWiseClicks).map((date) => ({
+    date,
+    clicks: dateWiseClicks[date],
+  }));
+
+  // Sample data for click devices (You may need to replace it with actual data)
   const clickDevices = [
     { device: 'Mobile', clicks: 134 }, // take it as 100%
     { device: 'Desktop', clicks: 40 },
     { device: 'Tablet', clicks: 3 },
   ];
 
-  const maxDateClicks = Math.max(...dateWiseClicks.map((data) => data.clicks));
+  const maxDateClicks = Math.max(...dateWiseClicksArray.map((data) => data.clicks));
   const maxDeviceClicks = Math.max(...clickDevices.map((data) => data.clicks));
 
   return (
@@ -28,7 +47,7 @@ const DashboardContainer = ({ totalClicks }) => {
       <div className={styles.chartsContainer}>
         <div className={styles.chart}>
           <h3>Date-wise Clicks</h3>
-          {dateWiseClicks.map((data, index) => (
+          {dateWiseClicksArray.map((data, index) => (
             <div key={index} className={styles.barContainer}>
               <span>{data.date}</span>
               <div

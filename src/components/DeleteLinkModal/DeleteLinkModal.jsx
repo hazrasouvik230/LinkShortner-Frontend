@@ -1,38 +1,3 @@
-// import React from "react";
-// import styles from './DeleteLinkModal.module.css'
-
-// const DeleteLinkModal = ({onClose}) => {
-//   const handleDelete = async () => {
-//     try {
-//       const token = localStorage.getItem("token");
-//       await axios.delete(`http://localhost:5000/api/links/${linkId}`, {
-//         headers: { Authorization: `Bearer ${token}` },
-//       });
-//       onClose(); // Close the modal
-//       fetchLinks(); // Refresh the links list
-//     } catch (error) {
-//       console.error("Error deleting link:", error);
-//     }
-//   };  
-
-//   return (
-//     <div className={styles.modalOverlay}>
-//       <div className={styles.modalContainer}>
-//         <h2> Are you sure, you want to remove it ?</h2>
-//         <div className={styles.modalActions}>
-//           <button onClick={onClose} className={styles.btnSecondary}>
-//             NO
-//           </button>
-//           <button onClick={handleDelete} className={styles.btnPrimary}>
-//             YES
-//           </button>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default DeleteLinkModal;
 import React from "react";
 import axios from "axios";
 import styles from './DeleteLinkModal.module.css';
