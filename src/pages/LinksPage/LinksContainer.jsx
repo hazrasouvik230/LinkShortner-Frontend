@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styles from './LinksContainer.module.css';
+import DeleteLinkModal from '../../components/DeleteLinkModal/DeleteLinkModal'
 
 const LinksContainer = ({ links, setLinks, addAnalyticsEntry }) => {
   const incrementClickCount = async (id) => {
@@ -50,8 +51,14 @@ const LinksContainer = ({ links, setLinks, addAnalyticsEntry }) => {
     alert(`Edit link with ID: ${id}`);
   };
 
-  const handleDelete = (id) => {
-    setLinks(links.filter((link) => link.id !== id));
+  const [isModalOpen, setIsModalOpen] = useState(false);
+const [selectedLinkId, setSelectedLinkId] = useState(null);
+
+  const openDeleteModal = (id) => {
+    const linkId = id.$oid || id; // Adjust for nested ID structure
+    console.log(`Deleting link with ID: ${linkId}`);
+    setSelectedLinkId(linkId); // Set the selected link ID
+    setIsModalOpen(true);
   };
 
   const handleShortLinkClick = (id, shortLink) => {
@@ -91,17 +98,6 @@ const LinksContainer = ({ links, setLinks, addAnalyticsEntry }) => {
                 </a>
               </td>
               <td>
-                {/* <a
-                  href={link.shortLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={(e) => {
-                    e.preventDefault(); // Prevent navigation for logging purposes
-                    handleShortLinkClick(link.id, link.shortLink);
-                  }}
-                >
-                  {link.shortLink}
-                </a> */}
                 <a
                   href={link.shortLink}
                   target="_blank"
@@ -110,7 +106,6 @@ const LinksContainer = ({ links, setLinks, addAnalyticsEntry }) => {
                 >
                   {link.shortLink}
                 </a>
-
               </td>
               <td>{link.remarks}</td>
               <td>{link.clicks}</td>
@@ -121,7 +116,7 @@ const LinksContainer = ({ links, setLinks, addAnalyticsEntry }) => {
                 <button onClick={() => handleEdit(link.id)} className={styles.editButton}>
                   ✏️
                 </button>
-                <button onClick={() => handleDelete(link.id)} className={styles.deleteButton}>
+                <button onClick={() => openDeleteModal(link._id.$oid || link._id)} className={styles.deleteButton}>
                   🗑️
                 </button>
               </td>
@@ -129,6 +124,13 @@ const LinksContainer = ({ links, setLinks, addAnalyticsEntry }) => {
           ))}
         </tbody>
       </table>
+      {isModalOpen && (
+        <DeleteLinkModal
+          onClose={() => setIsModalOpen(false)}
+          linkId={selectedLinkId}
+          setLinks={setLinks}
+        />
+      )}
     </div>
   );
 };

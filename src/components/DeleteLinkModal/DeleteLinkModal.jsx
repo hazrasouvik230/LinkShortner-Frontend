@@ -11,7 +11,7 @@ const DeleteLinkModal = ({ onClose, linkId, setLinks }) => {
       });
 
       // Update links state after deletion
-      setLinks((prevLinks) => prevLinks.filter((link) => link.id !== linkId));
+      setLinks((prevLinks) => prevLinks.filter((link) => link._id.$oid !== linkId && link._id !== linkId));
       
       onClose(); // Close the modal
     } catch (error) {
@@ -22,7 +22,7 @@ const DeleteLinkModal = ({ onClose, linkId, setLinks }) => {
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.modalContainer}>
-        <h2>Are you sure you want to delete this link?</h2>
+        <h2>Are you sure you want to delete this link? ID: {linkId}</h2>
         <div className={styles.modalActions}>
           <button onClick={onClose} className={styles.btnSecondary}>
             NO
