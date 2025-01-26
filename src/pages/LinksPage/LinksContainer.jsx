@@ -46,8 +46,6 @@ const LinksContainer = ({ links, setLinks, addAnalyticsEntry }) => {
     }
   };
   
-  
-  
   const handleEdit = (id) => {
     alert(`Edit link with ID: ${id}`);
   };
