@@ -61,6 +61,14 @@ const LinksContainer = ({ links, setLinks, addAnalyticsEntry }) => {
     incrementClickCount(id);
   };
 
+  const formatDateTime = (dateString) => {
+    const date = new Date(dateString);
+    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    const formattedDate = date.toLocaleDateString(undefined, options); // e.g., Jan 14, 2025
+    const formattedTime = date.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' }); // e.g., 16:30
+    return `${formattedDate} ${formattedTime}`;
+  };
+
   return (
     <div className={styles.linksContainer}>
       <table className={styles.table}>
@@ -78,7 +86,7 @@ const LinksContainer = ({ links, setLinks, addAnalyticsEntry }) => {
         <tbody>
           {links.map((link) => (
             <tr key={link.id}>
-              <td>{link.date}</td>
+              <td>{formatDateTime(link.date)}</td>
               <td>
                 <a href={link.originalLink} target="_blank" rel="noopener noreferrer">
                   {link.originalLink}
