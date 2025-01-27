@@ -45,3 +45,12 @@
 .settingsContainer button:last-child {
     background: rgba(235, 13, 13, 1);
 }
+
+@media (max-width: 768px) {
+    .settingsContainer .inputSections {
+        width: 80%;
+    }
+    .settingsContainer button {
+        width: 80%;
+    }
+}

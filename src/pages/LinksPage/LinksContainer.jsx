@@ -3,6 +3,7 @@ import styles from "./LinksContainer.module.css";
 import DeleteLinkModal from "../../components/DeleteLinkModal/DeleteLinkModal";
 import EditLinkModal from "../../components/EditLinkModal/EditLinkModal";
 import Copy from "../../components/Copy/Copy";
+import { AnimatePresence } from "framer-motion";
 
 const LinksContainer = ({ links, setLinks, addAnalyticsEntry }) => {
   const incrementClickCount = async (id) => {
@@ -208,7 +209,9 @@ const LinksContainer = ({ links, setLinks, addAnalyticsEntry }) => {
           ))}
         </tbody>
       </table>
-      {isCopy && <Copy />}
+      <AnimatePresence>
+        {isCopy && <Copy />}
+      </AnimatePresence>
       
       {isEditModalOpen && (
         <EditLinkModal

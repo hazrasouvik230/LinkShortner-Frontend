@@ -11,3 +11,12 @@
 .dashboard .rightContainer {
     width: 80%;
 }
+
+@media (max-width: 768px) {
+    .dashboard .leftContainer {
+        display: none;
+    }
+    .dashboard .rightContainer {
+        width: 100%;
+    }
+}

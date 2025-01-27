@@ -63,3 +63,12 @@
     font-size: 14px;
     text-align: right;
 }
+
+@media (max-width: 480px) {
+    .dashboardContainer .chartsContainer {
+        flex-direction: column;
+    }
+    .dashboardContainer .chartsContainer .chart {
+        width: calc(100% - 3rem);
+    }
+}

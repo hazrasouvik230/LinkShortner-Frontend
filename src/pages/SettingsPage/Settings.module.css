@@ -11,3 +11,12 @@
 .settings .rightContainer {
     width: 80%;
 }
+
+@media (max-width: 768px) {
+    .settings .leftContainer {
+        display: none;
+    }
+    .settings .rightContainer {
+        width: 100%;
+    }
+}

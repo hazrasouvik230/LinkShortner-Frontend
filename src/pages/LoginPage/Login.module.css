@@ -70,13 +70,67 @@
     cursor: pointer;
 }
 
-
-
 .error {
     color: red;
     font-size: .6rem;
     margin-top: -1.2rem;
     margin-left: .2rem;
     margin-bottom: 10px;
-  }
-  
+}  
+
+@media (max-width: 1024px) {
+    .loginContainer {
+        flex-direction: column;
+    }
+    .loginContainer .leftContainer {
+        display: none;
+    }
+    .loginContainer .rightContainer {
+        width: 100%;
+    }
+
+    .loginContainer .rightContainer h2 {
+        margin-top: 7rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .loginContainer .rightContainer form {
+        width: 90%;
+    }
+    .loginContainer .rightContainer {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 425px) {
+    .loginContainer .rightContainer {
+        padding: 1rem;
+    }
+    .loginContainer .rightContainer h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 375px) {
+    .loginContainer .rightContainer form input,
+    .loginContainer .rightContainer form button {
+        padding: 0.6rem 0.8rem;
+    }
+    .loginContainer .rightContainer h2 {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 320px) {
+    .loginContainer .rightContainer {
+        padding: 0.5rem;
+    }
+    .loginContainer .rightContainer h2 {
+        font-size: 1.1rem;
+    }
+    .loginContainer .rightContainer form input,
+    .loginContainer .rightContainer form button {
+        padding: 0.5rem 0.7rem;
+    }
+}
