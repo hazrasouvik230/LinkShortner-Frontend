@@ -22,7 +22,7 @@ const DeleteLinkModal = ({ onClose, linkId, setLinks }) => {
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.modalContainer}>
-        <h2>Are you sure you want to delete this link? ID: {linkId}</h2>
+        <h2>Are you sure you want to delete this link?</h2>
         <div className={styles.modalActions}>
           <button onClick={onClose} className={styles.btnSecondary}>
             NO
