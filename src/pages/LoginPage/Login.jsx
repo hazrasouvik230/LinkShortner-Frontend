@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { baseUrl } from '../../Urls';
 
 const Login = () => {
   const [state, setState] = useState('Signup');
@@ -53,12 +54,12 @@ const Login = () => {
       setErrors({});
       try {
         if (state === 'Signup') {
-          const response = await axios.post('http://localhost:5000/api/user/signup', formData);
+          const response = await axios.post(`${baseUrl}/api/user/signup`, formData);
           toast.success(response.data.message, {
             onClose: () => navigate('/dashboard'), // Navigate after toast closes
           });
         } else {
-          const response = await axios.post('http://localhost:5000/api/user/login', {
+          const response = await axios.post(`${baseUrl}/api/user/login`, {
             email: formData.email,
             password: formData.password,
           });

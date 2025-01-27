@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { baseUrl } from "../../Urls";
 
 const Navbar = ({ userName = "User", addNewLink }) => {
   const [currentDate, setCurrentDate] = useState("");
@@ -27,7 +28,7 @@ const Navbar = ({ userName = "User", addNewLink }) => {
     localStorage.removeItem("token");
   
     // Optionally, you can call the logout route to ensure proper logging
-    axios.post("http://localhost:5000/api/user/logout")
+    axios.post(`${baseUrl}/api/user/logout`)
       .then(() => {
         toast.success("You have been logged out");
         navigate("/");

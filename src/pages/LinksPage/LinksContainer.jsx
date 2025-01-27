@@ -4,6 +4,7 @@ import DeleteLinkModal from "../../components/DeleteLinkModal/DeleteLinkModal";
 import EditLinkModal from "../../components/EditLinkModal/EditLinkModal";
 import Copy from "../../components/Copy/Copy";
 import { AnimatePresence } from "framer-motion";
+import { baseUrl } from "../../Urls";
 
 const LinksContainer = ({ links, setLinks, addAnalyticsEntry }) => {
   const incrementClickCount = async (id) => {
@@ -17,7 +18,7 @@ const LinksContainer = ({ links, setLinks, addAnalyticsEntry }) => {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/links/click/${linkId}`,
+        `${baseUrl}/api/links/click/${linkId}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -78,7 +79,7 @@ const LinksContainer = ({ links, setLinks, addAnalyticsEntry }) => {
 
     // Optionally, make an API call to save the changes to the backend
     fetch(
-      `http://localhost:5000/api/links/${
+      `${baseUrl}/api/links/${
         updatedLink._id.$oid || updatedLink._id
       }`,
       {

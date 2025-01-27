@@ -1,12 +1,13 @@
 import React from "react";
 import axios from "axios";
 import styles from './DeleteLinkModal.module.css';
+import { baseUrl } from "../../Urls";
 
 const DeleteLinkModal = ({ onClose, linkId, setLinks }) => {
   const handleDelete = async () => {
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:5000/api/links/${linkId}`, {
+      await axios.delete(`${baseUrl}/api/links/${linkId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 

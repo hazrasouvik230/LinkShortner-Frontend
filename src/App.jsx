@@ -7,6 +7,7 @@ import Links from "./pages/LinksPage/Links";
 import Analytics from "./pages/AnalyticsPage/Analytics";
 import Settings from "./pages/SettingsPage/Settings";
 import axios from "axios";
+import { baseUrl } from "./Urls";
 
 const App = () => {
   const [links, setLinks] = useState([]);
@@ -23,7 +24,7 @@ const App = () => {
     if (!token) return;
   
     try {
-      const response = await axios.get("http://localhost:5000/api/user/me", {
+      const response = await axios.get(`${baseUrl}/api/user/me`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       console.log("Fetched user:", response.data.user); // Debug: Log fetched user data
@@ -44,7 +45,7 @@ const App = () => {
     if (!token) return;
   
     try {
-      const response = await axios.get("http://localhost:5000/api/links", {
+      const response = await axios.get(`${baseUrl}/api/links`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setLinks(response.data.links);
@@ -63,7 +64,7 @@ const App = () => {
   
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/links",
+        `${baseUrl}/api/links`,
         { originalLink: newLink.destinationUrl, shortLink: "shortLinkPlaceholder", remarks: newLink.remarks },
         { headers: { Authorization: `Bearer ${token}` } }
       );

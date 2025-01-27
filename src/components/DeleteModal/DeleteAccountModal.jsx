@@ -1,13 +1,14 @@
 import React from "react";
 import styles from './DeleteAccountModal.module.css'
 import { useNavigate } from "react-router-dom";
+import { baseUrl } from "../../Urls";
 
 const DeleteAccountModal = ({onClose}) => {
   const navigate = useNavigate();
 
   const handleDelete = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/user/delete", {
+      const response = await fetch(`${baseUrl}/api/user/delete`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,

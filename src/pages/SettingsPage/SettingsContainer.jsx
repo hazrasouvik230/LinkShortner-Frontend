@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./SettingsContainer.module.css";
 import DeleteAccountModal from "../../components/DeleteModal/DeleteAccountModal";
+import { baseUrl } from "../../Urls";
 
 const SettingsContainer = ({ user }) => {
   const [formData, setFormData] = useState({
@@ -36,7 +37,7 @@ const SettingsContainer = ({ user }) => {
 
   const handleSave = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/user/update", {
+      const response = await fetch(`${baseUrl}/api/user/update`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
