@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
-import styles from './Login.module.css';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { baseUrl } from '../../Urls';
+import React, { useState } from "react";
+import styles from "./Login.module.css";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { baseUrl } from "../../Urls";
 
 const Login = () => {
-  const [state, setState] = useState('Signup');
+  const [state, setState] = useState("Signup");
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    ph: '',
-    password: '',
-    confirmpassword: '',
+    name: "",
+    email: "",
+    ph: "",
+    password: "",
+    confirmpassword: "",
   });
   const [errors, setErrors] = useState({});
 
@@ -28,19 +28,19 @@ const Login = () => {
 
   const validateForm = () => {
     const newErrors = {};
-    if (state === 'Signup') {
-      if (!formData.name.trim()) newErrors.name = 'Name is required';
-      if (!formData.ph.trim()) newErrors.ph = 'Mobile number is required';
+    if (state === "Signup") {
+      if (!formData.name.trim()) newErrors.name = "Name is required";
+      if (!formData.ph.trim()) newErrors.ph = "Mobile number is required";
       if (formData.password !== formData.confirmpassword) {
-        newErrors.confirmpassword = 'Passwords do not match';
+        newErrors.confirmpassword = "Passwords do not match";
       }
     }
     if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
+      newErrors.email = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Invalid email format';
+      newErrors.email = "Invalid email format";
     }
-    if (!formData.password.trim()) newErrors.password = 'Password is required';
+    if (!formData.password.trim()) newErrors.password = "Password is required";
 
     return newErrors;
   };
@@ -53,10 +53,13 @@ const Login = () => {
     } else {
       setErrors({});
       try {
-        if (state === 'Signup') {
-          const response = await axios.post(`${baseUrl}/api/user/signup`, formData);
+        if (state === "Signup") {
+          const response = await axios.post(
+            `${baseUrl}/api/user/signup`,
+            formData
+          );
           toast.success(response.data.message, {
-            onClose: () => navigate('/dashboard'), // Navigate after toast closes
+            onClose: () => navigate("/dashboard"), // Navigate after toast closes
           });
         } else {
           const response = await axios.post(`${baseUrl}/api/user/login`, {
@@ -64,22 +67,28 @@ const Login = () => {
             password: formData.password,
           });
           toast.success(response.data.message, {
-            onClose: () => navigate('/dashboard'), // Navigate after toast closes
+            onClose: () => navigate("/dashboard"), // Navigate after toast closes
           });
-          localStorage.setItem('token', response.data.token);
+          localStorage.setItem("token", response.data.token);
+
+          // Fetch the user details after login
+          const userResponse = await axios.get(`${baseUrl}/api/user/me`, {
+            headers: { Authorization: `Bearer ${response.data.token}` },
+          });
+          console.log("Logged-in User Details:", userResponse.data.user); // Log user details
         }
         setFormData({
-          name: '',
-          email: '',
-          ph: '',
-          password: '',
-          confirmpassword: '',
+          name: "",
+          email: "",
+          ph: "",
+          password: "",
+          confirmpassword: "",
         });
       } catch (error) {
         if (error.response) {
           toast.error(error.response.data.error);
         } else {
-          toast.error('An error occurred. Please try again.');
+          toast.error("An error occurred. Please try again.");
         }
       }
     }
@@ -95,22 +104,26 @@ const Login = () => {
       <div className={styles.rightContainer}>
         <div className={styles.navbar}>
           <div
-            className={`${styles.navItem} ${state === 'Signup' ? styles.active : ''}`}
-            onClick={() => setState('Signup')}
+            className={`${styles.navItem} ${
+              state === "Signup" ? styles.active : ""
+            }`}
+            onClick={() => setState("Signup")}
           >
             SignUp
           </div>
           <div
-            className={`${styles.navItem} ${state === 'Login' ? styles.active : ''}`}
-            onClick={() => setState('Login')}
+            className={`${styles.navItem} ${
+              state === "Login" ? styles.active : ""
+            }`}
+            onClick={() => setState("Login")}
           >
             Login
           </div>
         </div>
 
-        <h2>{state === 'Signup' ? 'Join us Today!' : 'Login'}</h2>
+        <h2>{state === "Signup" ? "Join us Today!" : "Login"}</h2>
         <form onSubmit={handleSubmit}>
-          {state === 'Signup' && (
+          {state === "Signup" && (
             <>
               <input
                 type="text"
@@ -120,7 +133,9 @@ const Login = () => {
                 value={formData.name}
                 onChange={handleChange}
               />
-              {errors.name && <span className={styles.error}>{errors.name}</span>}
+              {errors.name && (
+                <span className={styles.error}>{errors.name}</span>
+              )}
             </>
           )}
 
@@ -134,7 +149,7 @@ const Login = () => {
           />
           {errors.email && <span className={styles.error}>{errors.email}</span>}
 
-          {state === 'Signup' && (
+          {state === "Signup" && (
             <>
               <input
                 type="number"
@@ -156,9 +171,11 @@ const Login = () => {
             value={formData.password}
             onChange={handleChange}
           />
-          {errors.password && <span className={styles.error}>{errors.password}</span>}
+          {errors.password && (
+            <span className={styles.error}>{errors.password}</span>
+          )}
 
-          {state === 'Signup' && (
+          {state === "Signup" && (
             <>
               <input
                 type="password"
@@ -175,16 +192,18 @@ const Login = () => {
           )}
 
           <button type="submit" className={styles.registerButton}>
-            {state === 'Signup' ? 'Register' : 'Login'}
+            {state === "Signup" ? "Register" : "Login"}
           </button>
         </form>
-        {state === 'Signup' ? (
+        {state === "Signup" ? (
           <p>
-            Already have an account? <span onClick={() => setState('Login')}>Login</span>
+            Already have an account?{" "}
+            <span onClick={() => setState("Login")}>Login</span>
           </p>
         ) : (
           <p>
-            Don’t have an account? <span onClick={() => setState('Signup')}>SignUp</span>
+            Don’t have an account?{" "}
+            <span onClick={() => setState("Signup")}>SignUp</span>
           </p>
         )}
       </div>
