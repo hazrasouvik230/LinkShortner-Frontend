@@ -46,11 +46,90 @@
     background: rgba(235, 13, 13, 1);
 }
 
-@media (max-width: 768px) {
+/* Responsive for 1024px */
+@media (max-width: 1024px) {
+    .settingsContainer {
+        margin-top: 5rem;
+        height: 60vh;
+    }
     .settingsContainer .inputSections {
-        width: 80%;
+        width: 60%;
+    }
+    .settingsContainer .inputSections div label {
+        font-size: 0.85rem;
     }
     .settingsContainer button {
-        width: 80%;
+        width: 60%;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .settingsContainer {
+        height: 50vh;
+    }
+    .settingsContainer .inputSections {
+        width: calc(80% - 2rem);
+    }
+    .settingsContainer .inputSections div label {
+        font-size: 0.8rem;
+    }
+    .settingsContainer button {
+        width: calc(80% - 2rem);
+        font-size: 0.8rem;
+    }
+}
+
+/* Responsive for 425px */
+@media (max-width: 425px) {
+    .settingsContainer {
+        height: 45vh;
+    }
+    .settingsContainer .inputSections {
+        width: calc(80% - 2rem);
+    }
+    .settingsContainer .inputSections div {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .settingsContainer .inputSections div input {
+        width: calc(100% - 2rem);
+        margin-top: 0.5rem;
+    }
+    .settingsContainer button {
+        width: calc(80% - 2rem);
+        font-size: 0.75rem;
+    }
+}
+
+/* Responsive for 375px */
+@media (max-width: 375px) {
+    .settingsContainer {
+        height: 40vh;
+    }
+    .settingsContainer .inputSections {
+        width: 90%;
+    }
+    .settingsContainer .inputSections div label {
+        font-size: 0.75rem;
+    }
+    .settingsContainer button {
+        width: 90%;
+        font-size: 0.7rem;
+    }
+}
+
+/* Responsive for 320px */
+@media (max-width: 320px) {
+    .settingsContainer .inputSections {
+        width: 93%;
+    }
+    .settingsContainer .inputSections div input {
+        padding: 0.4rem 0.8rem;
+    }
+    .settingsContainer button {
+        width: 90%;
+        padding: 0.6rem 0;
+        font-size: 0.65rem;
     }
 }

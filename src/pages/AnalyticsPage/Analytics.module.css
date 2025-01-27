@@ -11,3 +11,20 @@
 .analytics .rightContainer {
     width: 80%;
 }
+
+.analytics .rightContainer .sidebar {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .analytics .leftContainer {
+        display: none;
+    }
+    .analytics .rightContainer {
+        width: 100%;
+    }
+    .analytics .rightContainer .sidebar {
+        display: block;
+        border-bottom: 1px solid lightgray;
+    }
+}

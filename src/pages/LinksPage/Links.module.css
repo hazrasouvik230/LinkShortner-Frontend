@@ -11,3 +11,20 @@
 .links .rightContainer {
     width: 80%;
 }
+
+.links .rightContainer .sidebar {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .links .leftContainer {
+        display: none;
+    }
+    .links .rightContainer {
+        width: 100%;
+    }
+    .links .rightContainer .sidebar {
+        display: block;
+        border-bottom: 1px solid lightgray;
+    }
+}

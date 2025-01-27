@@ -130,85 +130,87 @@ const LinksContainer = ({ links, setLinks, addAnalyticsEntry }) => {
 
   return (
     <div className={styles.linksContainer}>
-      <table className={styles.table}>
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Original Link</th>
-            <th>Short Link</th>
-            <th>Remarks</th>
-            <th>Clicks</th>
-            <th>Status</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {links.map((link) => (
-            <tr key={link.id}>
-              <td>{formatDateTime(link.date)}</td>
-              <td>
-                <a
-                  href={link.originalLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {link.originalLink.length > 15
-                    ? `${link.originalLink.substring(0, 15)}...`
-                    : link.originalLink}
-                </a>
-              </td>
-              <td>
-                <a
-                  href={link.shortLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={(e) => {
-                    e.preventDefault(); // Prevent the browser from navigating immediately
-                    incrementClickCount(link._id.$oid || link._id).then(() => {
-                      navigator.clipboard
-                        .writeText(link.originalLink)
-                        .then(() => {
-                          console.log("Link is copied: ", link.originalLink);
-                          setIsCopy(true); // Show the "Copied" message
-                          setTimeout(() => setIsCopy(false), 5000); // Hide after 2 seconds
-                        });
-                    });
-                  }}
-                >
-                  {link.shortLink}{" "}
-                  <i
-                    class="fa-regular fa-copy"
-                    style={{ marginLeft: "0.5rem" }}
-                  ></i>
-                </a>
-              </td>
-              <td>{link.remarks}</td>
-              <td>{link.clicks}</td>
-              <td
-                className={
-                  link.status === "Active" ? styles.active : styles.inactive
-                }
-              >
-                {link.status}
-              </td>
-              <td>
-                <button
-                  onClick={() => handleEdit(link._id.$oid || link._id)}
-                  className={styles.editButton}
-                >
-                  <i class="fa-solid fa-pen"></i>
-                </button>
-                <button
-                  onClick={() => openDeleteModal(link._id.$oid || link._id)}
-                  className={styles.deleteButton}
-                >
-                  <i class="fa-solid fa-trash-can"></i>
-                </button>
-              </td>
+      <div className={styles.tableWrapper}>
+        <table className={styles.table}>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Original Link</th>
+              <th>Short Link</th>
+              <th>Remarks</th>
+              <th>Clicks</th>
+              <th>Status</th>
+              <th>Action</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {links.map((link) => (
+              <tr key={link.id}>
+                <td>{formatDateTime(link.date)}</td>
+                <td>
+                  <a
+                    href={link.originalLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {link.originalLink.length > 15
+                      ? `${link.originalLink.substring(0, 15)}...`
+                      : link.originalLink}
+                  </a>
+                </td>
+                <td>
+                  <a
+                    href={link.shortLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => {
+                      e.preventDefault(); // Prevent the browser from navigating immediately
+                      incrementClickCount(link._id.$oid || link._id).then(() => {
+                        navigator.clipboard
+                          .writeText(link.originalLink)
+                          .then(() => {
+                            console.log("Link is copied: ", link.originalLink);
+                            setIsCopy(true); // Show the "Copied" message
+                            setTimeout(() => setIsCopy(false), 5000); // Hide after 2 seconds
+                          });
+                      });
+                    }}
+                  >
+                    {link.shortLink}{" "}
+                    <i
+                      class="fa-regular fa-copy"
+                      style={{ marginLeft: "0.5rem" }}
+                    ></i>
+                  </a>
+                </td>
+                <td>{link.remarks}</td>
+                <td>{link.clicks}</td>
+                <td
+                  className={
+                    link.status === "Active" ? styles.active : styles.inactive
+                  }
+                >
+                  {link.status}
+                </td>
+                <td>
+                  <button
+                    onClick={() => handleEdit(link._id.$oid || link._id)}
+                    className={styles.editButton}
+                  >
+                    <i class="fa-solid fa-pen"></i>
+                  </button>
+                  <button
+                    onClick={() => openDeleteModal(link._id.$oid || link._id)}
+                    className={styles.deleteButton}
+                  >
+                    <i class="fa-solid fa-trash-can"></i>
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
       <AnimatePresence>
         {isCopy && <Copy />}
       </AnimatePresence>

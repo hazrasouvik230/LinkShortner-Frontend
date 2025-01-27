@@ -13,6 +13,7 @@ const Settings = ({ links, addNewLink, user }) => {
 
         <div className={styles.rightContainer}>
             <Navbar userName={user?.name} addNewLink={addNewLink} />
+            <div className={styles.sidebar}><Sidebar /></div>
             <SettingsContainer links={links} user={user} />
         </div>
     </div>

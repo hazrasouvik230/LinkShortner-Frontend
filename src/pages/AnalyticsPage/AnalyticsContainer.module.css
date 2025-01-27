@@ -40,3 +40,69 @@
   .table tr:hover {
     background-color: #f9f9f9;
   }
+
+/* Responsive for 1024px */
+@media (max-width: 1024px) {
+  .analyticsContainer {
+      padding: 1.5rem;
+  }
+  .table th, .table td {
+      padding: 8px;
+  }
+}
+
+/* Responsive for 768px */
+@media (max-width: 768px) {
+  .analyticsContainer {
+      padding: 1rem;
+  }
+  .table th, .table td {
+      font-size: 0.9rem;
+      padding: 6px;
+  }
+}
+
+/* Responsive for 425px */
+@media (max-width: 425px) {
+  .analyticsContainer {
+      padding: 0.8rem;
+  }
+  .table th, .table td {
+      font-size: 0.85rem;
+      padding: 4px;
+  }
+  .editButton, .deleteButton {
+      margin: 0 3px;
+  }
+}
+
+/* Responsive for 375px */
+@media (max-width: 375px) {
+  .analyticsContainer {
+      padding: 0.6rem;
+  }
+  .table th, .table td {
+      font-size: 0.8rem;
+      padding: 3px;
+  }
+}
+
+/* Responsive for 320px */
+@media (max-width: 320px) {
+  .analyticsContainer {
+      padding: 0.5rem;
+  }
+  .table th, .table td {
+      font-size: 0.5rem;
+      padding: 2px;
+  }
+  .table {
+      border-radius: 0.15rem;
+  }
+  .table th:first-child {
+      border-top-left-radius: 0.5rem;
+  }
+  .table th:last-child {
+      border-top-right-radius: 0.5rem;
+  }
+}

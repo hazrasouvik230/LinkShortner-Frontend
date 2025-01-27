@@ -12,11 +12,20 @@
     width: 80%;
 }
 
+.dashboard .rightContainer .sidebar {
+    display: none;
+}
+
+/* Responsive for 768px */
 @media (max-width: 768px) {
     .dashboard .leftContainer {
         display: none;
     }
     .dashboard .rightContainer {
         width: 100%;
+    }
+    .dashboard .rightContainer .sidebar {
+        display: block;
+        border-bottom: 1px solid lightgray;
     }
 }

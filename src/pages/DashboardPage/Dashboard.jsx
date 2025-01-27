@@ -13,6 +13,7 @@ const Dashboard = ({ links, addNewLink, totalClicks, user }) => {
 
       <div className={styles.rightContainer}>
         <Navbar userName={user?.name} addNewLink={addNewLink} />
+        <div className={styles.sidebar}><Sidebar /></div>
         <DashboardContainer links={links} totalClicks={totalClicks} />
       </div>
     </div>

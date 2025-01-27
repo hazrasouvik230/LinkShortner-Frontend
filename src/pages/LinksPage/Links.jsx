@@ -12,6 +12,7 @@ const Links = ({ links, addNewLink, setLinks, user, addAnalyticsEntry }) => {
       </div>
       <div className={styles.rightContainer}>
         <Navbar userName={user?.name} addNewLink={addNewLink} />
+        <div className={styles.sidebar}><Sidebar /></div>
         <LinksContainer links={links} setLinks={setLinks} addAnalyticsEntry={addAnalyticsEntry} />
       </div>
     </div>

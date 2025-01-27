@@ -13,6 +13,7 @@ const Analytics = ({ links, addNewLink, user, analytics }) => {
 
         <div className={styles.rightContainer}>
             <Navbar userName={user?.name} addNewLink={addNewLink} />
+            <div className={styles.sidebar}><Sidebar /></div>
             <AnalyticsContainer links={links} analytics={analytics} />
         </div>
     </div>
