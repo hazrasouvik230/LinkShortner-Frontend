@@ -3,8 +3,8 @@ import styles from "./Navbar.module.css";
 import CreateModal from "../CreateModal/CreateModal";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { baseUrl } from "../../Urls";
 
 const Navbar = ({ userName = "User", addNewLink }) => {
@@ -26,9 +26,15 @@ const Navbar = ({ userName = "User", addNewLink }) => {
   const handleLogout = () => {
     // Remove token from localStorage
     localStorage.removeItem("token");
-  
+
+    // Reset application state on logout
+    setUser(null);
+    setLinks([]);
+    setAnalytics([]);
+
     // Optionally, you can call the logout route to ensure proper logging
-    axios.post(`${baseUrl}/api/user/logout`)
+    axios
+      .post(`${baseUrl}/api/user/logout`)
       .then(() => {
         toast.success("You have been logged out");
         navigate("/");
@@ -37,7 +43,7 @@ const Navbar = ({ userName = "User", addNewLink }) => {
         console.error("Error logging out:", error);
         toast.error("Failed to logout. Try again.");
       });
-  };  
+  };
 
   useEffect(() => {
     const now = new Date();
@@ -62,7 +68,10 @@ const Navbar = ({ userName = "User", addNewLink }) => {
       {/* <ToastContainer position="top-right" autoClose={2000} /> */}
       <div>
         <div className={styles.greeting}>
-          <span role="img" aria-label="emoji">{greeting.emoji}</span> {greeting.text}, {userName}
+          <span role="img" aria-label="emoji">
+            {greeting.emoji}
+          </span>{" "}
+          {greeting.text}, {userName}
         </div>
         <div className={styles.date}>{currentDate}</div>
       </div>
@@ -72,13 +81,23 @@ const Navbar = ({ userName = "User", addNewLink }) => {
         </button>
         <div className={styles.searchContainer}>
           <i className="fa-solid fa-magnifying-glass"></i>
-          <input type="text" placeholder="Search by remarks" className={styles.searchInput} />
+          <input
+            type="text"
+            placeholder="Search by remarks"
+            className={styles.searchInput}
+          />
         </div>
         <div className={styles.profile} onClick={handleVisible}>
-          <span className={styles.profileInitials}>{userName.slice(0, 2).toUpperCase()}</span>
+          <span className={styles.profileInitials}>
+            {userName.slice(0, 2).toUpperCase()}
+          </span>
         </div>
       </div>
-      {visible && <div className={styles.logout} onClick={handleLogout}>Logout</div>}
+      {visible && (
+        <div className={styles.logout} onClick={handleLogout}>
+          Logout
+        </div>
+      )}
       {showModal && (
         <CreateModal
           onClose={toggleModal}
