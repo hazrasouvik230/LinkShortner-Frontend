@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./AnalyticsContainer.module.css";
+import { baseUrl } from "../../Urls";
 
 const AnalyticsContainer = ({ analytics }) => {
   const formatDateTime = (timestamp) => {
@@ -29,7 +30,7 @@ const AnalyticsContainer = ({ analytics }) => {
             <tr key={index}>
               <td>{formatDateTime(entry.timestamp)}</td>
               <td>{entry.originalLink}</td>
-              <td>{entry.shortLink}</td>
+              <td>{baseUrl}/{entry.shortLink}</td>
               <td>{entry.ipAddress}</td>
               <td>{entry.userDevice}</td>
             </tr>
