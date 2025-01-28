@@ -300,20 +300,8 @@ const LinksContainer = ({ links, setLinks, addAnalyticsEntry }) => {
       };
       addAnalyticsEntry(analyticsEntry);
 
-      // Increment clickDevices count
-    const deviceType = result.userDevice || "Unknown"; // Handle cases where userDevice might be undefined
-    const updatedClickDevices = [...clickDevices];
-    const deviceIndex = updatedClickDevices.findIndex(
-      (device) => device.device === deviceType
-    );
-
-    if (deviceIndex !== -1) {
-      updatedClickDevices[deviceIndex].clicks += 1;
-    } else {
-      updatedClickDevices.push({ device: deviceType, clicks: 1 });
-    }
-
-    setClickDevices(updatedClickDevices);
+    // Update click devices using the prop
+    updateClickDevices(result.userDevice || "Unknown");
 
       console.log("Click logged successfully:", result);
     } catch (error) {

@@ -29,16 +29,29 @@ const DashboardContainer = ({ totalClicks, links }) => {
   }));
 
   // Sample data for click devices (You may need to replace it with actual data)
-  // const clickDevices = [
-  //   { device: "Mobile", clicks: 134 },
-  //   { device: "Desktop", clicks: 40 },
-  //   { device: "Tablet", clicks: 3 },
-  // ];
   const [clickDevices, setClickDevices] = useState([
     { device: "Mobile", clicks: 0 },
     { device: "Desktop", clicks: 0 },
     { device: "Tablet", clicks: 0 },
   ]);
+  
+  const updateClickDevices = (deviceType) => {
+    setClickDevices((prevDevices) => {
+      const updatedDevices = [...prevDevices];
+      const deviceIndex = updatedDevices.findIndex(
+        (device) => device.device === deviceType
+      );
+  
+      if (deviceIndex !== -1) {
+        updatedDevices[deviceIndex].clicks += 1;
+      } else {
+        updatedDevices.push({ device: deviceType, clicks: 1 });
+      }
+  
+      return updatedDevices;
+    });
+  };
+  
 
   const maxDateClicks = Math.max(
     ...dateWiseClicksArray.map((data) => data.clicks)
