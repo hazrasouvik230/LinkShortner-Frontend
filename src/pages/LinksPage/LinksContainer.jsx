@@ -161,7 +161,7 @@ const LinksContainer = ({ links, setLinks, addAnalyticsEntry }) => {
                 </td>
                 <td>
                   <a
-                    href={`${baseUrl}/${link.shortLink}`}
+                    href={link.shortLink}
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={(e) => {
@@ -177,7 +177,7 @@ const LinksContainer = ({ links, setLinks, addAnalyticsEntry }) => {
                       });
                     }}
                   >
-                    {link.shortLink}{" "}
+                    {`${baseUrl}/${link.shortLink}`}{" "}
                     <i
                       class="fa-regular fa-copy"
                       style={{ marginLeft: "0.5rem" }}
