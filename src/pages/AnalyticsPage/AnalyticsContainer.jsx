@@ -15,28 +15,30 @@ const AnalyticsContainer = ({ analytics }) => {
   };
   return (
     <div className={styles.analyticsContainer}>
-      <table className={styles.table}>
-        <thead>
-          <tr>
-            <th>Timestamp</th>
-            <th>Original Link</th>
-            <th>Short Link</th>
-            <th>IP Address</th>
-            <th>User Device</th>
-          </tr>
-        </thead>
-        <tbody>
-          {analytics.map((entry, index) => (
-            <tr key={index}>
-              <td>{formatDateTime(entry.timestamp)}</td>
-              <td>{entry.originalLink}</td>
-              <td>{baseUrl}/{entry.shortLink}</td>
-              <td>{entry.ipAddress}</td>
-              <td>{entry.userDevice}</td>
+      <div className={styles.tableWrapper}>
+        <table className={styles.table}>
+          <thead>
+            <tr>
+              <th>Timestamp</th>
+              <th>Original Link</th>
+              <th>Short Link</th>
+              <th>IP Address</th>
+              <th>User Device</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {analytics.map((entry, index) => (
+              <tr key={index}>
+                <td>{formatDateTime(entry.timestamp)}</td>
+                <td>{entry.originalLink}</td>
+                <td>{baseUrl}/{entry.shortLink}</td>
+                <td>{entry.ipAddress}</td>
+                <td>{entry.userDevice}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
