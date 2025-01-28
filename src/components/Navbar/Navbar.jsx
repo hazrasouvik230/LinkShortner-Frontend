@@ -7,7 +7,13 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { baseUrl } from "../../Urls";
 
-const Navbar = ({ userName = "User", addNewLink }) => {
+const Navbar = ({
+  userName = "User",
+  addNewLink,
+  setUser,
+  setLinks,
+  setAnalytics,
+}) => {
   const [currentDate, setCurrentDate] = useState("");
   const [greeting, setGreeting] = useState({ text: "", emoji: "" });
   const [visible, setVisible] = useState(false);

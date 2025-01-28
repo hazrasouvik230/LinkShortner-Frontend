@@ -92,6 +92,9 @@ const App = () => {
                 links={links}
                 totalClicks={totalClicks}
                 user={user}
+                setUser={setUser}
+                setLinks={setLinks}
+                setAnalytics={setAnalytics}
                 addNewLink={addNewLink}
               />
             }
@@ -101,9 +104,11 @@ const App = () => {
             element={
               <Links
                 links={links}
-                addNewLink={addNewLink}
-                setLinks={setLinks}
                 user={user}
+                setUser={setUser}
+                setLinks={setLinks}
+                setAnalytics={setAnalytics}
+                addNewLink={addNewLink}
                 addAnalyticsEntry={addAnalyticsEntry}
               />
             }
@@ -114,6 +119,9 @@ const App = () => {
               <Analytics
                 links={links}
                 user={user}
+                setUser={setUser}
+                setLinks={setLinks}
+                setAnalytics={setAnalytics}
                 addNewLink={addNewLink}
                 analytics={analytics}
               />
@@ -122,7 +130,14 @@ const App = () => {
           <Route
             path="/settings"
             element={
-              <Settings links={links} user={user} addNewLink={addNewLink} />
+              <Settings
+                links={links}
+                user={user}
+                setUser={setUser}
+                setLinks={setLinks}
+                setAnalytics={setAnalytics}
+                addNewLink={addNewLink}
+              />
             }
           />
         </Routes>
