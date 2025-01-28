@@ -6,9 +6,17 @@
     width: 50%;
 }
 
-.loginContainer .leftContainer img {
+.loginContainer .leftContainer img:not(.logo) {
     width: 100%;
     height: 100vh;
+}
+
+.loginContainer .leftContainer .logo {
+    position: absolute;
+    width: 8rem;
+    height: 2rem;
+    top: 1.5rem;
+    left: 1.5rem;
 }
 
 .loginContainer .rightContainer {
@@ -86,7 +94,8 @@
         display: none;
     }
     .loginContainer .rightContainer {
-        width: calc(100% - 4rem);
+        width: 100%;
+        background: aqua;
     }
     .loginContainer .rightContainer .navbar {
         right: 6rem;
@@ -101,7 +110,7 @@
         width: 90%;
     }
     .loginContainer .rightContainer {
-        width: calc(100% - 5.5rem);
+        width: 100%;
         padding: 1.5rem;
     }
 }
@@ -117,6 +126,9 @@
 }
 
 @media (max-width: 375px) {
+    .loginContainer .rightContainer {
+        width: 100%;
+    }
     .loginContainer .rightContainer form input,
     .loginContainer .rightContainer form button {
         padding: 0.6rem 0.8rem;

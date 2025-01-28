@@ -100,7 +100,11 @@ const Login = ({setUser}) => {
       <ToastContainer position="top-right" autoClose={2000} />
       <div className={styles.leftContainer}>
         <img src="./Login.png" alt="" />
+        <div>
+          <img src="./Logo.png" alt="" className={styles.logo} />
+        </div>
       </div>
+
 
       <div className={styles.rightContainer}>
         <div className={styles.navbar}>
