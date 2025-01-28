@@ -30,9 +30,9 @@ const DashboardContainer = ({ totalClicks, links }) => {
 
   // Sample data for click devices (You may need to replace it with actual data)
   const clickDevices = [
-    { device: "Mobile", clicks: 134 },
-    { device: "Desktop", clicks: 40 },
-    { device: "Tablet", clicks: 3 },
+    { device: "Mobile", clicks: 0 },
+    { device: "Desktop", clicks: 0 },
+    { device: "Tablet", clicks: 0 },
   ];
 
   const maxDateClicks = Math.max(
