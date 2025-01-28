@@ -161,18 +161,18 @@ const LinksContainer = ({ links, setLinks, addAnalyticsEntry }) => {
                 </td>
                 <td>
                   <a
-                    href={link.shortLink}
+                    href={`${baseUrl}/${link.shortLink}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={(e) => {
-                      e.preventDefault(); // Prevent the browser from navigating immediately
+                      e.preventDefault();
                       incrementClickCount(link._id.$oid || link._id).then(() => {
                         navigator.clipboard
                           .writeText(link.originalLink)
                           .then(() => {
                             console.log("Link is copied: ", link.originalLink);
-                            setIsCopy(true); // Show the "Copied" message
-                            setTimeout(() => setIsCopy(false), 5000); // Hide after 2 seconds
+                            setIsCopy(true);
+                            setTimeout(() => setIsCopy(false), 5000);
                           });
                       });
                     }}
