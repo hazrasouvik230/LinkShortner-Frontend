@@ -44,14 +44,14 @@ const EditLinkModal = ({ onClose, onCreate, linkData }) => {
 const handleCreate = () => {
     if (validateForm()) {
       const linkData = {
-        _id: linkData?._id || null, // Ensure the ID is properly handled
+        _id: linkData?._id || null,
         destinationUrl,
         remarks,
         linkExpiration,
         expirationDate: linkExpiration ? expirationDate : null,
       };
   
-      onCreate(linkData); // Pass the link data back to the parent
+      onCreate(linkData);
     }
   };
   

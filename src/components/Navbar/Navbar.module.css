@@ -112,30 +112,25 @@
     transition: all 0.3s ease;
 }
 
-/* Responsive Design for 1024px */
+/* Responsive Design */
 @media (max-width: 1024px) {
     .navbar {
         padding: 0.75rem;
     }
-
     .navbar .greeting {
         font-size: 0.95rem;
     }
-
     .navbar .actions {
         gap: 0.75rem;
     }
-
     .navbar .actions .createButton {
         padding: 0.4rem 0.9rem;
         font-size: 0.85rem;
     }
-
     .navbar .actions .searchContainer .searchInput {
         width: 10rem;
         font-size: 0.85rem;
     }
-
     .navbar .actions .profile {
         width: 2.2rem;
         height: 2.2rem;
@@ -144,49 +139,40 @@
     }
 }
 
-/* Responsive Design for 768px */
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;
         align-items: flex-start;
         padding: 0.5rem 1rem;
     }
-
     .navbar .actions {
         width: 100%;
         justify-content: space-between;
     }
-
     .navbar .actions .createButton {
         padding: 0.4rem 0.8rem;
         font-size: 0.8rem;
     }
-
     .navbar .actions .searchContainer .searchInput {
         width: 8rem;
     }
 }
 
-/* Responsive Design for 425px */
 @media (max-width: 425px) {
     .navbar {
         padding: 0.5rem;
     }
-
     .navbar .greeting {
         font-size: 0.9rem;
     }
-
     .navbar .actions .createButton {
         padding: 0.3rem 0.6rem;
         font-size: 0.75rem;
     }
-
     .navbar .actions .searchContainer .searchInput {
         width: 7rem;
         font-size: 0.75rem;
     }
-
     .navbar .actions .profile {
         width: 2rem;
         height: 2rem;
@@ -194,32 +180,26 @@
     }
 }
 
-/* Responsive Design for 375px */
 @media (max-width: 375px) {
     .navbar {
         flex-direction: column;
         align-items: flex-start;
         padding: 0.4rem;
     }
-
     .navbar .greeting {
         font-size: 0.85rem;
     }
-
     .navbar .actions {
         flex-wrap: wrap;
     }
-
     .navbar .actions .createButton {
         padding: 0.2rem 0.5rem;
         font-size: 0.6rem;
     }
-
     .navbar .actions .searchContainer .searchInput {
         width: 6rem;
         font-size: 0.7rem;
     }
-
     .navbar .actions .profile {
         width: 1.8rem;
         height: 1.8rem;
@@ -228,31 +208,25 @@
     }
 }
 
-/* Responsive Design for 320px */
 @media (max-width: 320px) {
     .navbar {
         padding: 0.3rem;
     }
-
     .navbar .greeting {
         font-size: 0.8rem;
     }
-
     .navbar .actions {
         flex-wrap: wrap;
         gap: 0.5rem;
     }
-
     .navbar .actions .createButton {
         padding: 0.2rem 0.4rem;
         font-size: 0.65rem;
     }
-
     .navbar .actions .searchContainer .searchInput {
         width: 5.5rem;
         font-size: 0.65rem;
     }
-
     .navbar .actions .profile {
         width: 1.5rem;
         height: 1.5rem;

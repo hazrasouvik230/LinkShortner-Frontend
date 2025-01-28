@@ -3,7 +3,7 @@ import styles from "./Navbar.module.css";
 import CreateModal from "../CreateModal/CreateModal";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { baseUrl } from "../../Urls";
 
@@ -65,7 +65,6 @@ const Navbar = ({ userName = "User", addNewLink }) => {
 
   return (
     <div className={styles.navbar}>
-      {/* <ToastContainer position="top-right" autoClose={2000} /> */}
       <div>
         <div className={styles.greeting}>
           <span role="img" aria-label="emoji">

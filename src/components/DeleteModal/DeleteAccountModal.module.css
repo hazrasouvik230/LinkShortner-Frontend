@@ -64,21 +64,19 @@
   transition: all 0.3s ease;
 }
 
+/* Responsive design */
 @media (max-width: 768px) {
   .modalOverlay .modalContainer {
     width: 60%;
     padding: 1.5rem;
   }
-
   .modalOverlay .modalContainer h2 {
     font-size: 1.2rem;
   }
-
   .modalOverlay .modalContainer .modalActions {
     flex-direction: column;
     gap: 1rem;
   }
-
   .modalOverlay .modalContainer .modalActions button {
     width: 100%;
   }
@@ -89,15 +87,12 @@
     width: 80%;
     padding: 1rem;
   }
-
   .modalOverlay .modalContainer h2 {
     font-size: 1rem;
   }
-
   .modalOverlay .modalContainer .modalActions {
     gap: 0.5rem;
   }
-
   .modalOverlay .modalContainer .modalActions button {
     font-size: 0.9rem;
   }
@@ -108,11 +103,9 @@
     width: 90%;
     padding: 0.8rem;
   }
-
   .modalOverlay .modalContainer h2 {
     font-size: 0.9rem;
   }
-
   .modalOverlay .modalContainer .modalActions button {
     font-size: 0.8rem;
   }
@@ -123,11 +116,9 @@
     width: 95%;
     padding: 0.5rem;
   }
-
   .modalOverlay .modalContainer h2 {
     font-size: 0.8rem;
   }
-
   .modalOverlay .modalContainer .modalActions button {
     font-size: 0.7rem;
   }

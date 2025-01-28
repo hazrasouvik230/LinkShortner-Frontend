@@ -95,7 +95,6 @@
     }
     .loginContainer .rightContainer {
         width: 100%;
-        background: aqua;
     }
     .loginContainer .rightContainer .navbar {
         right: 6rem;
@@ -127,7 +126,7 @@
 
 @media (max-width: 375px) {
     .loginContainer .rightContainer {
-        width: 100%;
+        width: calc(100% - 2rem);
     }
     .loginContainer .rightContainer form input,
     .loginContainer .rightContainer form button {
@@ -140,7 +139,7 @@
 
 @media (max-width: 320px) {
     .loginContainer .rightContainer {
-        width: calc(100% - 2rem);
+        width: calc(100% - 1rem);
         padding: 0.5rem;
     }
     .loginContainer .rightContainer .navbar {
