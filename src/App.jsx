@@ -218,6 +218,29 @@ const App = () => {
     }
   };
 
+  const [clickDevices, setClickDevices] = useState([
+    { device: "Mobile", clicks: 0 },
+    { device: "Desktop", clicks: 0 },
+    { device: "Tablet", clicks: 0 },
+  ]);
+  
+  const updateClickDevices = (deviceType) => {
+    setClickDevices((prevDevices) => {
+      const updatedDevices = [...prevDevices];
+      const deviceIndex = updatedDevices.findIndex(
+        (device) => device.device === deviceType
+      );
+  
+      if (deviceIndex !== -1) {
+        updatedDevices[deviceIndex].clicks += 1;
+      } else {
+        updatedDevices.push({ device: deviceType, clicks: 1 });
+      }
+  
+      return updatedDevices;
+    });
+  };
+
   const totalClicks = links.reduce((sum, link) => sum + link.clicks, 0);
 
   return (
