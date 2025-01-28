@@ -276,13 +276,17 @@ const Login = ({ setUser }) => {
   //           `${baseUrl}/api/user/signup`,
   //           formData
   //         );
-  //         toast.success(response.data.message);
+  //         toast.success(response.data.message, {
+  //           onClose: () => navigate("/dashboard"),
+  //         });
   //       } else {
   //         const response = await axios.post(`${baseUrl}/api/user/login`, {
   //           email: formData.email,
   //           password: formData.password,
   //         });
-  //         toast.success(response.data.message);
+  //         toast.success(response.data.message, {
+  //           onClose: () => navigate("/dashboard"),
+  //         });
   //         localStorage.setItem("token", response.data.token);
 
   //         // Fetch the user details after login
@@ -308,6 +312,7 @@ const Login = ({ setUser }) => {
   //     }
   //   }
   // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validateForm();
@@ -319,17 +324,16 @@ const Login = ({ setUser }) => {
         let response;
         if (state === "Signup") {
           response = await axios.post(`${baseUrl}/api/user/signup`, formData);
-          toast.success(response.data.message);
+          localStorage.setItem("token", response.data.token);
         } else {
           response = await axios.post(`${baseUrl}/api/user/login`, {
             email: formData.email,
             password: formData.password,
           });
-          toast.success(response.data.message);
           localStorage.setItem("token", response.data.token);
         }
   
-        // Fetch user details immediately after login/signup
+        // Fetch user details after signup/login
         const userResponse = await axios.get(`${baseUrl}/api/user/me`, {
           headers: { Authorization: `Bearer ${response.data.token}` },
         });
@@ -337,10 +341,10 @@ const Login = ({ setUser }) => {
         console.log("Logged-in User Details:", userResponse.data.user);
         setUser(userResponse.data.user);
   
-        // Redirect to dashboard **AFTER** setting user
-        navigate("/dashboard");
+        toast.success(response.data.message, {
+          onClose: () => navigate("/dashboard"),
+        });
   
-        // Reset form fields
         setFormData({
           name: "",
           email: "",
@@ -348,6 +352,7 @@ const Login = ({ setUser }) => {
           password: "",
           confirmpassword: "",
         });
+  
       } catch (error) {
         if (error.response) {
           toast.error(error.response.data.error);
