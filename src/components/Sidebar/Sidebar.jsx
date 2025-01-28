@@ -1,16 +1,24 @@
-import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import styles from './Sidebar.module.css';
+import React from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import styles from "./Sidebar.module.css";
 
 const Sidebar = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
   const menuItems = [
-    { name: 'Dashboard', icon: 'fa-regular fa-envelope-open', path: '/dashboard' },
-    { name: 'Links', icon: 'fa-solid fa-link', path: '/links' },
-    { name: 'Analytics', icon: 'fa-solid fa-arrow-trend-up', path: '/analytics' },
-    { name: 'Settings', icon: 'fa-solid fa-gear', path: '/settings' },
+    {
+      name: "Dashboard",
+      icon: "fa-regular fa-envelope-open",
+      path: "/dashboard",
+    },
+    { name: "Links", icon: "fa-solid fa-link", path: "/links" },
+    {
+      name: "Analytics",
+      icon: "fa-solid fa-arrow-trend-up",
+      path: "/analytics",
+    },
+    { name: "Settings", icon: "fa-solid fa-gear", path: "/settings" },
   ];
 
   return (
@@ -23,7 +31,9 @@ const Sidebar = () => {
         {menuItems.map((item) => (
           <div
             key={item.name}
-            className={`${styles.sideItem} ${location.pathname === item.path ? styles.active : ''}`}
+            className={`${styles.sideItem} ${
+              location.pathname === item.path ? styles.active : ""
+            }`}
             onClick={() => navigate(item.path)}
           >
             <i className={item.icon}></i>

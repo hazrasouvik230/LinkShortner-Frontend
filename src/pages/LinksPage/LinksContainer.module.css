@@ -68,7 +68,7 @@
   text-decoration: underline;
 }
 
-/* Responsive for 1024px */
+/* Responsive design */
 @media (max-width: 1024px) {
   .linksContainer {
       padding: 1.5rem;
@@ -78,7 +78,6 @@
   }
 }
 
-/* Responsive for 768px */
 @media (max-width: 768px) {
   .linksContainer {
       padding: 1rem;
@@ -89,7 +88,6 @@
   }
 }
 
-/* Responsive for 425px */
 @media (max-width: 425px) {
   .linksContainer {
       padding: 0.8rem;
@@ -103,7 +101,6 @@
   }
 }
 
-/* Responsive for 375px */
 @media (max-width: 375px) {
   .linksContainer {
       padding: 0.6rem;
@@ -114,7 +111,6 @@
   }
 }
 
-/* Responsive for 320px */
 @media (max-width: 320px) {
   .linksContainer {
       padding: 0.5rem;

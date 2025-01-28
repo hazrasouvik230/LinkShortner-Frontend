@@ -16,6 +16,7 @@
     display: none;
 }
 
+/* Responsive design */
 @media (max-width: 768px) {
     .links .leftContainer {
         display: none;

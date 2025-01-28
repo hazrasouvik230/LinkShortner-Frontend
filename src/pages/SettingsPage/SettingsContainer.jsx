@@ -14,7 +14,7 @@ const SettingsContainer = ({ user }) => {
 
   const handleDeleteVisible = () => {
     setDeleteVisible(!deleteVisible);
-  }
+  };
 
   useEffect(() => {
     // Populate form data when the user prop is received
@@ -93,13 +93,9 @@ const SettingsContainer = ({ user }) => {
         </div>
       </div>
 
-      <button onClick={handleSave}>
-        Save Changes
-      </button>
+      <button onClick={handleSave}>Save Changes</button>
 
-      <button onClick={handleDeleteVisible}>
-        Delete Account
-      </button>
+      <button onClick={handleDeleteVisible}>Delete Account</button>
       {deleteVisible && <DeleteAccountModal onClose={handleDeleteVisible} />}
     </div>
   );

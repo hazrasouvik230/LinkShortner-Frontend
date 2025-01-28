@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import styles from './DeleteLinkModal.module.css';
+import styles from "./DeleteLinkModal.module.css";
 import { baseUrl } from "../../Urls";
 
 const DeleteLinkModal = ({ onClose, linkId, setLinks }) => {
@@ -12,8 +12,12 @@ const DeleteLinkModal = ({ onClose, linkId, setLinks }) => {
       });
 
       // Update links state after deletion
-      setLinks((prevLinks) => prevLinks.filter((link) => link._id.$oid !== linkId && link._id !== linkId));
-      
+      setLinks((prevLinks) =>
+        prevLinks.filter(
+          (link) => link._id.$oid !== linkId && link._id !== linkId
+        )
+      );
+
       onClose(); // Close the modal
     } catch (error) {
       console.error("Error deleting link:", error);

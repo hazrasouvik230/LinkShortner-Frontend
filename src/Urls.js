@@ -1,1 +1,1 @@
-export const baseUrl = "https://linkshortner-backend.onrender.com"
+export const baseUrl = "https://linkshortner-backend.onrender.com";

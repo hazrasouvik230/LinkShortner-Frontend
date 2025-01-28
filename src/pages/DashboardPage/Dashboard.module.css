@@ -16,7 +16,7 @@
     display: none;
 }
 
-/* Responsive for 768px */
+/* Responsive design */
 @media (max-width: 768px) {
     .dashboard .leftContainer {
         display: none;

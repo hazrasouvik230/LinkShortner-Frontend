@@ -46,7 +46,7 @@
     background: rgba(235, 13, 13, 1);
 }
 
-/* Responsive for 1024px */
+/* Responsive design */
 @media (max-width: 1024px) {
     .settingsContainer {
         margin-top: 5rem;
@@ -80,7 +80,6 @@
     }
 }
 
-/* Responsive for 425px */
 @media (max-width: 425px) {
     .settingsContainer {
         height: 45vh;
@@ -102,7 +101,6 @@
     }
 }
 
-/* Responsive for 375px */
 @media (max-width: 375px) {
     .settingsContainer {
         height: 40vh;
@@ -119,7 +117,6 @@
     }
 }
 
-/* Responsive for 320px */
 @media (max-width: 320px) {
     .settingsContainer .inputSections {
         width: 93%;

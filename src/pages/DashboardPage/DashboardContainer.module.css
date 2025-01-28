@@ -1,6 +1,5 @@
 .dashboardContainer {
     height: calc(91vh - 65px);
-    /* background: lightblue; */
     padding: 2rem;
 }
 
@@ -64,7 +63,7 @@
     text-align: right;
 }
 
-/* Responsive for 768px */
+/* Responsive design */
 @media (max-width: 768px) {
     .dashboardContainer {
         padding: 1rem;
@@ -84,7 +83,6 @@
     }
 }
 
-/* Responsive for 425px */
 @media (max-width: 425px) {
     .dashboardContainer {
         padding: 0.8rem;
@@ -99,7 +97,6 @@
     }
 }
 
-/* Responsive for 375px */
 @media (max-width: 375px) {
     .dashboardContainer {
         padding: 0.5rem;
@@ -114,7 +111,6 @@
     }
 }
 
-/* Responsive for 320px */
 @media (max-width: 320px) {
     .dashboardContainer {
         padding: 0.4rem;

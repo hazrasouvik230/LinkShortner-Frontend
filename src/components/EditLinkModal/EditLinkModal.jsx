@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import styles from './EditLinkModal.module.css';
+import React, { useState, useEffect } from "react";
+import styles from "./EditLinkModal.module.css";
 
 const EditLinkModal = ({ onClose, onCreate, linkData }) => {
-  const [destinationUrl, setDestinationUrl] = useState('');
-  const [remarks, setRemarks] = useState('');
+  const [destinationUrl, setDestinationUrl] = useState("");
+  const [remarks, setRemarks] = useState("");
   const [linkExpiration, setLinkExpiration] = useState(false);
-  const [expirationDate, setExpirationDate] = useState('');
+  const [expirationDate, setExpirationDate] = useState("");
 
   const [errors, setErrors] = useState({});
 
   // Populate fields with linkData when modal opens
   useEffect(() => {
     if (linkData) {
-      setDestinationUrl(linkData.originalLink || '');
-      setRemarks(linkData.remarks || '');
+      setDestinationUrl(linkData.originalLink || "");
+      setRemarks(linkData.remarks || "");
       setLinkExpiration(!!linkData.expirationDate); // True if expiration date exists
-      setExpirationDate(linkData.expirationDate || '');
+      setExpirationDate(linkData.expirationDate || "");
     }
   }, [linkData]);
 
@@ -23,17 +23,20 @@ const EditLinkModal = ({ onClose, onCreate, linkData }) => {
     const newErrors = {};
 
     if (!destinationUrl) {
-      newErrors.destinationUrl = 'Destination URL is required.';
-    } else if (!/^https?:\/\/[\w.-]+(?:\.[\w\.-]+)+[/#?]?.*$/.test(destinationUrl)) {
-      newErrors.destinationUrl = 'Enter a valid URL (e.g., https://example.com).';
+      newErrors.destinationUrl = "Destination URL is required.";
+    } else if (
+      !/^https?:\/\/[\w.-]+(?:\.[\w\.-]+)+[/#?]?.*$/.test(destinationUrl)
+    ) {
+      newErrors.destinationUrl =
+        "Enter a valid URL (e.g., https://example.com).";
     }
 
     if (!remarks) {
-      newErrors.remarks = 'Remarks are required.';
+      newErrors.remarks = "Remarks are required.";
     }
 
     if (linkExpiration && !expirationDate) {
-      newErrors.expirationDate = 'Expiration date is required.';
+      newErrors.expirationDate = "Expiration date is required.";
     }
 
     setErrors(newErrors);
@@ -41,7 +44,7 @@ const EditLinkModal = ({ onClose, onCreate, linkData }) => {
     return Object.keys(newErrors).length === 0;
   };
 
-const handleCreate = () => {
+  const handleCreate = () => {
     if (validateForm()) {
       const linkData = {
         _id: linkData?._id || null,
@@ -50,11 +53,11 @@ const handleCreate = () => {
         linkExpiration,
         expirationDate: linkExpiration ? expirationDate : null,
       };
-  
+
       onCreate(linkData);
     }
   };
-  
+
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.modal}>
@@ -66,7 +69,9 @@ const handleCreate = () => {
         </div>
         <div className={styles.modalBody}>
           <div className={styles.destination}>
-            <label>Destination URL <span className={styles.required}>*</span></label>
+            <label>
+              Destination URL <span className={styles.required}>*</span>
+            </label>
             <input
               type="url"
               value={destinationUrl}
@@ -74,11 +79,15 @@ const handleCreate = () => {
               placeholder="https://web.whatsapp.com/"
               required
             />
-            {errors.destinationUrl && <p className={styles.error}>{errors.destinationUrl}</p>}
+            {errors.destinationUrl && (
+              <p className={styles.error}>{errors.destinationUrl}</p>
+            )}
           </div>
 
           <div className={styles.remarks}>
-            <label>Remarks <span className={styles.required}>*</span></label>
+            <label>
+              Remarks <span className={styles.required}>*</span>
+            </label>
             <textarea
               value={remarks}
               onChange={(e) => setRemarks(e.target.value)}
@@ -90,7 +99,9 @@ const handleCreate = () => {
           <div className={styles.expire}>
             <p className={styles.linkExpiration}>Link Expiration</p>
             <div
-              className={`${styles.toggleBtn} ${linkExpiration ? styles.active : ''}`}
+              className={`${styles.toggleBtn} ${
+                linkExpiration ? styles.active : ""
+              }`}
               onClick={() => setLinkExpiration(!linkExpiration)}
             ></div>
           </div>
@@ -103,7 +114,9 @@ const handleCreate = () => {
                 value={expirationDate}
                 onChange={(e) => setExpirationDate(e.target.value)}
               />
-              {errors.expirationDate && <p className={styles.error}>{errors.expirationDate}</p>}
+              {errors.expirationDate && (
+                <p className={styles.error}>{errors.expirationDate}</p>
+              )}
             </div>
           )}
         </div>
@@ -111,10 +124,10 @@ const handleCreate = () => {
           <button
             className={styles.clearButton}
             onClick={() => {
-              setDestinationUrl('');
-              setRemarks('');
+              setDestinationUrl("");
+              setRemarks("");
               setLinkExpiration(false);
-              setExpirationDate('');
+              setExpirationDate("");
               setErrors({});
             }}
           >

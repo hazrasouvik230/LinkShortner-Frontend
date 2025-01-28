@@ -1,32 +1,39 @@
-import React, { useState } from 'react';
-import styles from './CreateModal.module.css'; // Include styles for the modal here
+import React, { useState } from "react";
+import styles from "./CreateModal.module.css"; // Include styles for the modal here
 
 const CreateModal = ({ onClose, onCreate }) => {
-  const [destinationUrl, setDestinationUrl] = useState('');
-  const [remarks, setRemarks] = useState('');
+  const [destinationUrl, setDestinationUrl] = useState("");
+  const [remarks, setRemarks] = useState("");
   const [linkExpiration, setLinkExpiration] = useState(false);
-  const [expirationDate, setExpirationDate] = useState('');
+  const [expirationDate, setExpirationDate] = useState("");
 
-  const [errors, setErrors] = useState({ destinationUrl: '', remarks: '', expirationDate: '' });
+  const [errors, setErrors] = useState({
+    destinationUrl: "",
+    remarks: "",
+    expirationDate: "",
+  });
 
   const validateForm = () => {
     const newErrors = {};
 
     // Validate Destination URL
     if (!destinationUrl) {
-      newErrors.destinationUrl = 'Destination URL is required.';
-    } else if (!/^https?:\/\/[\w.-]+(?:\.[\w\.-]+)+[/#?]?.*$/.test(destinationUrl)) {
-      newErrors.destinationUrl = 'Enter a valid URL (e.g., https://example.com).';
+      newErrors.destinationUrl = "Destination URL is required.";
+    } else if (
+      !/^https?:\/\/[\w.-]+(?:\.[\w\.-]+)+[/#?]?.*$/.test(destinationUrl)
+    ) {
+      newErrors.destinationUrl =
+        "Enter a valid URL (e.g., https://example.com).";
     }
 
     // Validate Remarks
     if (!remarks) {
-      newErrors.remarks = 'Remarks are required.';
+      newErrors.remarks = "Remarks are required.";
     }
 
     // Validate Expiration Date if Link Expiration is enabled
     if (linkExpiration && !expirationDate) {
-      newErrors.expirationDate = 'Expiration date is required.';
+      newErrors.expirationDate = "Expiration date is required.";
     }
 
     setErrors(newErrors);
@@ -60,7 +67,9 @@ const CreateModal = ({ onClose, onCreate }) => {
         <div className={styles.modalBody}>
           {/* Destination URL */}
           <div className={styles.destination}>
-            <label>Destination URL <span className={styles.required}>*</span></label>
+            <label>
+              Destination URL <span className={styles.required}>*</span>
+            </label>
             <input
               type="url"
               value={destinationUrl}
@@ -68,12 +77,16 @@ const CreateModal = ({ onClose, onCreate }) => {
               placeholder="https://web.whatsapp.com/"
               required
             />
-            {errors.destinationUrl && <p className={styles.error}>{errors.destinationUrl}</p>}
+            {errors.destinationUrl && (
+              <p className={styles.error}>{errors.destinationUrl}</p>
+            )}
           </div>
 
           {/* Remarks */}
           <div className={styles.remarks}>
-            <label>Remarks <span className={styles.required}>*</span></label>
+            <label>
+              Remarks <span className={styles.required}>*</span>
+            </label>
             <textarea
               value={remarks}
               onChange={(e) => setRemarks(e.target.value)}
@@ -86,7 +99,9 @@ const CreateModal = ({ onClose, onCreate }) => {
           <div className={styles.expire}>
             <p className={styles.linkExpiration}>Link Expiration</p>
             <div
-              className={`${styles.toggleBtn} ${linkExpiration ? styles.active : ''}`}
+              className={`${styles.toggleBtn} ${
+                linkExpiration ? styles.active : ""
+              }`}
               onClick={() => setLinkExpiration(!linkExpiration)}
             ></div>
           </div>
@@ -100,7 +115,9 @@ const CreateModal = ({ onClose, onCreate }) => {
                 value={expirationDate}
                 onChange={(e) => setExpirationDate(e.target.value)}
               />
-              {errors.expirationDate && <p className={styles.error}>{errors.expirationDate}</p>}
+              {errors.expirationDate && (
+                <p className={styles.error}>{errors.expirationDate}</p>
+              )}
             </div>
           )}
         </div>
@@ -110,10 +127,10 @@ const CreateModal = ({ onClose, onCreate }) => {
           <button
             className={styles.clearButton}
             onClick={() => {
-              setDestinationUrl('');
-              setRemarks('');
+              setDestinationUrl("");
+              setRemarks("");
               setLinkExpiration(false);
-              setExpirationDate('');
+              setExpirationDate("");
               setErrors({}); // Clear errors
             }}
           >
@@ -121,10 +138,7 @@ const CreateModal = ({ onClose, onCreate }) => {
           </button>
 
           {/* Create Button */}
-          <button
-            className={styles.createButton}
-            onClick={handleCreate}
-          >
+          <button className={styles.createButton} onClick={handleCreate}>
             Create new
           </button>
         </div>

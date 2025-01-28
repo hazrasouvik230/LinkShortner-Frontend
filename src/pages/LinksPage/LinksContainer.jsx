@@ -8,8 +8,8 @@ import { baseUrl } from "../../Urls";
 
 const LinksContainer = ({ links, setLinks, addAnalyticsEntry }) => {
   const incrementClickCount = async (id) => {
-    const linkId = id.$oid || id; // Extract the actual ID
-    console.log("Click logged for Link ID:", linkId); // Debugging
+    const linkId = id.$oid || id;
+    console.log("Click logged for Link ID:", linkId);
 
     if (!linkId) {
       console.error("Error: Link ID is undefined");
@@ -17,13 +17,10 @@ const LinksContainer = ({ links, setLinks, addAnalyticsEntry }) => {
     }
 
     try {
-      const response = await fetch(
-        `${baseUrl}/api/links/click/${linkId}`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-        }
-      );
+      const response = await fetch(`${baseUrl}/api/links/click/${linkId}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+      });
 
       if (!response.ok) {
         throw new Error("Failed to log click");
@@ -46,7 +43,7 @@ const LinksContainer = ({ links, setLinks, addAnalyticsEntry }) => {
         ipAddress: result.ipAddress,
         userDevice: result.userDevice,
       };
-      addAnalyticsEntry(analyticsEntry); // Update analytics state
+      addAnalyticsEntry(analyticsEntry);
 
       console.log("Click logged successfully:", result);
     } catch (error) {
@@ -60,10 +57,10 @@ const LinksContainer = ({ links, setLinks, addAnalyticsEntry }) => {
   const [selectedLink, setSelectedLink] = useState(null);
 
   const handleEdit = (id) => {
-    const link = links.find((link) => (link._id.$oid || link._id) === id); // Find the link by ID
-    console.log(`Editing link:`, link); // Debugging: log the link details
-    setSelectedLink(link); // Set the selected link to edit
-    setIsEditModalOpen(true); // Open the modal
+    const link = links.find((link) => (link._id.$oid || link._id) === id);
+    console.log(`Editing link:`, link);
+    setSelectedLink(link);
+    setIsEditModalOpen(true);
   };
 
   const handleEditSubmit = (updatedLink) => {
@@ -72,22 +69,17 @@ const LinksContainer = ({ links, setLinks, addAnalyticsEntry }) => {
       prevLinks.map((link) =>
         (link._id.$oid || link._id) ===
         (updatedLink._id.$oid || updatedLink._id)
-          ? { ...link, ...updatedLink } // Merge the updated details
+          ? { ...link, ...updatedLink }
           : link
       )
     );
 
     // Optionally, make an API call to save the changes to the backend
-    fetch(
-      `${baseUrl}/api/links/${
-        updatedLink._id.$oid || updatedLink._id
-      }`,
-      {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updatedLink),
-      }
-    )
+    fetch(`${baseUrl}/api/links/${updatedLink._id.$oid || updatedLink._id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(updatedLink),
+    })
       .then((response) => {
         if (!response.ok) throw new Error("Failed to update the link");
         return response.json();
@@ -107,9 +99,9 @@ const LinksContainer = ({ links, setLinks, addAnalyticsEntry }) => {
   const [selectedLinkId, setSelectedLinkId] = useState(null);
 
   const openDeleteModal = (id) => {
-    const linkId = id.$oid || id; // Adjust for nested ID structure
+    const linkId = id.$oid || id;
     console.log(`Deleting link with ID: ${linkId}`);
-    setSelectedLinkId(linkId); // Set the selected link ID
+    setSelectedLinkId(linkId);
     setIsModalOpen(true);
   };
 
@@ -121,11 +113,11 @@ const LinksContainer = ({ links, setLinks, addAnalyticsEntry }) => {
   const formatDateTime = (dateString) => {
     const date = new Date(dateString);
     const options = { year: "numeric", month: "short", day: "numeric" };
-    const formattedDate = date.toLocaleDateString(undefined, options); // e.g., Jan 14, 2025
+    const formattedDate = date.toLocaleDateString(undefined, options);
     const formattedTime = date.toLocaleTimeString(undefined, {
       hour: "2-digit",
       minute: "2-digit",
-    }); // e.g., 16:30
+    });
     return `${formattedDate} ${formattedTime}`;
   };
 
@@ -166,15 +158,20 @@ const LinksContainer = ({ links, setLinks, addAnalyticsEntry }) => {
                     rel="noopener noreferrer"
                     onClick={(e) => {
                       e.preventDefault();
-                      incrementClickCount(link._id.$oid || link._id).then(() => {
-                        navigator.clipboard
-                          .writeText(link.originalLink)
-                          .then(() => {
-                            console.log("Link is copied: ", link.originalLink);
-                            setIsCopy(true);
-                            setTimeout(() => setIsCopy(false), 5000);
-                          });
-                      });
+                      incrementClickCount(link._id.$oid || link._id).then(
+                        () => {
+                          navigator.clipboard
+                            .writeText(link.originalLink)
+                            .then(() => {
+                              console.log(
+                                "Link is copied: ",
+                                link.originalLink
+                              );
+                              setIsCopy(true);
+                              setTimeout(() => setIsCopy(false), 5000);
+                            });
+                        }
+                      );
                     }}
                   >
                     {`${baseUrl}/${link.shortLink}`}{" "}
@@ -212,15 +209,13 @@ const LinksContainer = ({ links, setLinks, addAnalyticsEntry }) => {
           </tbody>
         </table>
       </div>
-      <AnimatePresence>
-        {isCopy && <Copy />}
-      </AnimatePresence>
-      
+      <AnimatePresence>{isCopy && <Copy />}</AnimatePresence>
+
       {isEditModalOpen && (
         <EditLinkModal
           onClose={() => setIsEditModalOpen(false)}
           onCreate={handleEditSubmit}
-          linkData={selectedLink} // Pass the selected link data
+          linkData={selectedLink}
         />
       )}
 

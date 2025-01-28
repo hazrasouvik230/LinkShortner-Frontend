@@ -1,19 +1,19 @@
-import React from 'react';
-import styles from './DashboardContainer.module.css';
+import React from "react";
+import styles from "./DashboardContainer.module.css";
 
 const DashboardContainer = ({ totalClicks, links }) => {
   // Function to format date to 'dd-mm-yy'
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
-    const year = String(date.getFullYear()).slice(2); // Get last two digits of the year
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const year = String(date.getFullYear()).slice(2);
     return `${day}-${month}-${year}`;
   };
 
   // Aggregate clicks by date
   const dateWiseClicks = links.reduce((acc, link) => {
-    const formattedDate = formatDate(link.date); // Use formatDate function to format date
+    const formattedDate = formatDate(link.date);
     if (acc[formattedDate]) {
       acc[formattedDate] += link.clicks;
     } else {
@@ -30,12 +30,14 @@ const DashboardContainer = ({ totalClicks, links }) => {
 
   // Sample data for click devices (You may need to replace it with actual data)
   const clickDevices = [
-    { device: 'Mobile', clicks: 134 }, // take it as 100%
-    { device: 'Desktop', clicks: 40 },
-    { device: 'Tablet', clicks: 3 },
+    { device: "Mobile", clicks: 134 },
+    { device: "Desktop", clicks: 40 },
+    { device: "Tablet", clicks: 3 },
   ];
 
-  const maxDateClicks = Math.max(...dateWiseClicksArray.map((data) => data.clicks));
+  const maxDateClicks = Math.max(
+    ...dateWiseClicksArray.map((data) => data.clicks)
+  );
   const maxDeviceClicks = Math.max(...clickDevices.map((data) => data.clicks));
 
   return (

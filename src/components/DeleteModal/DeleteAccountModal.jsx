@@ -1,9 +1,9 @@
 import React from "react";
-import styles from './DeleteAccountModal.module.css'
+import styles from "./DeleteAccountModal.module.css";
 import { useNavigate } from "react-router-dom";
 import { baseUrl } from "../../Urls";
 
-const DeleteAccountModal = ({onClose}) => {
+const DeleteAccountModal = ({ onClose }) => {
   const navigate = useNavigate();
 
   const handleDelete = async () => {

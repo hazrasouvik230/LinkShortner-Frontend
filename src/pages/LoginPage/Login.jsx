@@ -6,7 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { baseUrl } from "../../Urls";
 
-const Login = ({setUser}) => {
+const Login = ({ setUser }) => {
   const [state, setState] = useState("Signup");
   const [formData, setFormData] = useState({
     name: "",
@@ -59,7 +59,7 @@ const Login = ({setUser}) => {
             formData
           );
           toast.success(response.data.message, {
-            onClose: () => navigate("/dashboard"), // Navigate after toast closes
+            onClose: () => navigate("/dashboard"),
           });
         } else {
           const response = await axios.post(`${baseUrl}/api/user/login`, {
@@ -67,7 +67,7 @@ const Login = ({setUser}) => {
             password: formData.password,
           });
           toast.success(response.data.message, {
-            onClose: () => navigate("/dashboard"), // Navigate after toast closes
+            onClose: () => navigate("/dashboard"),
           });
           localStorage.setItem("token", response.data.token);
 
@@ -75,8 +75,8 @@ const Login = ({setUser}) => {
           const userResponse = await axios.get(`${baseUrl}/api/user/me`, {
             headers: { Authorization: `Bearer ${response.data.token}` },
           });
-          console.log("Logged-in User Details:", userResponse.data.user); // Log user details
-          setUser(userResponse.data.user);  // 🔥 Update user state in App.js
+          console.log("Logged-in User Details:", userResponse.data.user);
+          setUser(userResponse.data.user);
         }
         setFormData({
           name: "",
@@ -104,7 +104,6 @@ const Login = ({setUser}) => {
           <img src="./Logo.png" alt="" className={styles.logo} />
         </div>
       </div>
-
 
       <div className={styles.rightContainer}>
         <div className={styles.navbar}>
