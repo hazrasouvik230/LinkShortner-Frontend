@@ -28,6 +28,11 @@ const LinksContainer = ({ links, setLinks, addAnalyticsEntry }) => {
 
       const result = await response.json();
 
+      // Log device details in the console
+    console.log(
+      `Click logged for Link ID: ${linkId} from Device: ${result.userDevice}`
+    );
+
       // Update the links state with the new click count
       setLinks((prevLinks) =>
         prevLinks.map((link) =>
