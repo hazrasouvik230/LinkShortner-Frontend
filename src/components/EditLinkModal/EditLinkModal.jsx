@@ -11,6 +11,7 @@ const EditLinkModal = ({ onClose, onCreate, linkData }) => {
 
   // Populate fields with linkData when modal opens
   useEffect(() => {
+    console.log("Received linkData:", linkData);
     if (linkData) {
       setDestinationUrl(linkData.originalLink || "");
       setRemarks(linkData.remarks || "");
@@ -46,7 +47,7 @@ const EditLinkModal = ({ onClose, onCreate, linkData }) => {
 
   const handleCreate = () => {
     if (validateForm()) {
-      const linkData = {
+      const updatedLinkData = {
         _id: linkData?._id || null,
         destinationUrl,
         remarks,
@@ -54,7 +55,7 @@ const EditLinkModal = ({ onClose, onCreate, linkData }) => {
         expirationDate: linkExpiration ? expirationDate : null,
       };
 
-      onCreate(linkData);
+      onCreate(updatedLinkData);
     }
   };
 
