@@ -11,7 +11,7 @@ const EditLinkModal = ({ onClose, onCreate, linkData }) => {
 
   // Populate fields with linkData when modal opens
   useEffect(() => {
-    console.log("Received linkData:", linkData);
+    console.log("Received linkData from edit link:", linkData);
     if (linkData) {
       setDestinationUrl(linkData.originalLink || "");
       setRemarks(linkData.remarks || "");
