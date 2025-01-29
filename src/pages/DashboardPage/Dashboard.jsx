@@ -11,6 +11,7 @@ const Dashboard = ({
   user,
   setUser,
   setLinks,
+  analytics,
   setAnalytics,
 }) => {
   return (
@@ -30,7 +31,7 @@ const Dashboard = ({
         <div className={styles.sidebar}>
           <Sidebar />
         </div>
-        <DashboardContainer links={links} totalClicks={totalClicks} />
+        <DashboardContainer links={links} analytics={analytics} totalClicks={totalClicks} />
       </div>
     </div>
   );

@@ -1,7 +1,19 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./DashboardContainer.module.css";
 
-const DashboardContainer = ({ totalClicks, links }) => {
+const DashboardContainer = ({ totalClicks, links, analytics }) => {
+  const [clickDevices, setClickDevices] = useState({});
+
+  useEffect(() => {
+    // Aggregate clicks by device dynamically
+    const deviceCounts = analytics.reduce((acc, entry) => {
+      acc[entry.userDevice] = (acc[entry.userDevice] || 0) + 1;
+      return acc;
+    }, {});
+
+    setClickDevices(deviceCounts);
+  }, [analytics]);
+
   // Function to format date to 'dd-mm-yy'
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -28,17 +40,11 @@ const DashboardContainer = ({ totalClicks, links }) => {
     clicks: dateWiseClicks[date],
   }));
 
-  // Sample data for click devices (You may need to replace it with actual data)
-  const clickDevices = [
-    { device: "Mobile", clicks: 0 },
-    { device: "Desktop", clicks: 0 },
-    { device: "Tablet", clicks: 0 },
-  ];
-
   const maxDateClicks = Math.max(
     ...dateWiseClicksArray.map((data) => data.clicks)
   );
-  const maxDeviceClicks = Math.max(...clickDevices.map((data) => data.clicks));
+  
+  const maxClicks = Math.max(...Object.values(clickDevices), 1); // Avoid division by zero
 
   return (
     <div className={styles.dashboardContainer}>
@@ -63,14 +69,14 @@ const DashboardContainer = ({ totalClicks, links }) => {
 
         <div className={styles.chart}>
           <h3>Click Devices</h3>
-          {clickDevices.map((data, index) => (
+          {Object.entries(clickDevices).map(([device, count], index) => (
             <div key={index} className={styles.barContainer}>
-              <span>{data.device}</span>
+              <span>{device}</span>
               <div
                 className={styles.bar}
-                style={{ width: `${(data.clicks / maxDeviceClicks) * 100}%` }}
+                style={{ width: `${(count / maxClicks) * 100}%` }}
               ></div>
-              <span>{data.clicks}</span>
+              <span>{count}</span>
             </div>
           ))}
         </div>
