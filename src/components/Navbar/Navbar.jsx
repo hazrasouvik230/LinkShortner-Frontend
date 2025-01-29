@@ -54,7 +54,7 @@ const Navbar = ({
   useEffect(() => {
     const now = new Date();
     const options = { weekday: "short", month: "short", day: "numeric" };
-    const formattedDate = now.toLocaleDateString("en-US", options);
+    const formattedDate = now.toLocaleDateString("en-IN", options);
     setCurrentDate(formattedDate);
 
     const hour = now.getHours();
