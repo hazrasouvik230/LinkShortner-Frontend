@@ -96,7 +96,6 @@ const App = () => {
                 setLinks={setLinks}
                 setAnalytics={setAnalytics}
                 addNewLink={addNewLink}
-                analytics={analytics}
               />
             }
           />
@@ -124,6 +123,7 @@ const App = () => {
                 setLinks={setLinks}
                 setAnalytics={setAnalytics}
                 addNewLink={addNewLink}
+                analytics={analytics}
               />
             }
           />

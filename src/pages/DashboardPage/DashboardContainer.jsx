@@ -1,19 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styles from "./DashboardContainer.module.css";
 
-const DashboardContainer = ({ totalClicks, links, analytics }) => {
-  const [clickDevices, setClickDevices] = useState({});
-
-  useEffect(() => {
-    // Aggregate clicks by device dynamically
-    const deviceCounts = analytics.reduce((acc, entry) => {
-      acc[entry.userDevice] = (acc[entry.userDevice] || 0) + 1;
-      return acc;
-    }, {});
-
-    setClickDevices(deviceCounts);
-  }, [analytics]);
-
+const DashboardContainer = ({ totalClicks, links }) => {
   // Function to format date to 'dd-mm-yy'
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -40,11 +28,17 @@ const DashboardContainer = ({ totalClicks, links, analytics }) => {
     clicks: dateWiseClicks[date],
   }));
 
+  // Sample data for click devices (You may need to replace it with actual data)
+  const clickDevices = [
+    { device: "Mobile", clicks: 0 },
+    { device: "Desktop", clicks: 0 },
+    { device: "Tablet", clicks: 0 },
+  ];
+
   const maxDateClicks = Math.max(
     ...dateWiseClicksArray.map((data) => data.clicks)
   );
-  
-  const maxClicks = Math.max(...Object.values(clickDevices), 1); // Avoid division by zero
+  const maxDeviceClicks = Math.max(...clickDevices.map((data) => data.clicks));
 
   return (
     <div className={styles.dashboardContainer}>
@@ -69,14 +63,14 @@ const DashboardContainer = ({ totalClicks, links, analytics }) => {
 
         <div className={styles.chart}>
           <h3>Click Devices</h3>
-          {Object.entries(clickDevices).map(([device, count], index) => (
+          {clickDevices.map((data, index) => (
             <div key={index} className={styles.barContainer}>
-              <span>{device}</span>
+              <span>{data.device}</span>
               <div
                 className={styles.bar}
-                style={{ width: `${(count / maxClicks) * 100}%` }}
+                style={{ width: `${(data.clicks / maxDeviceClicks) * 100}%` }}
               ></div>
-              <span>{count}</span>
+              <span>{data.clicks}</span>
             </div>
           ))}
         </div>
