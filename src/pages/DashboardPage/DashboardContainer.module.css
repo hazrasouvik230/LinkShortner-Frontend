@@ -52,11 +52,19 @@
 .dashboardContainer .chartsContainer .chart .barContainer .bar {
     flex: 2;
     height: 12px;
-    background-color: blue;
+    background: transparent;
+    border: 0.5px solid lightgray;
     margin: 0 10px;
+    border-radius: 0.25rem;
     transition: width 0.3s ease;
 }
-  
+
+.dashboardContainer .chartsContainer .chart .barContainer .bar .barLength {
+    height: 100%;
+    background: rgba(27, 72, 218, 1);;
+    border-radius: 0.25rem;
+}
+
 .dashboardContainer .chartsContainer .chart .barContainer span:last-child {
     flex: 0.5;
     font-size: 14px;

@@ -24,13 +24,16 @@ const DashboardContainer = ({ totalClicks, links, analytics }) => {
   }));
 
   // Dynamically count clicks per device from analytics
-  const deviceClicks = analytics.reduce((acc, data) => {
-    const device = (data.userDevice || "Unknown").toLowerCase(); // Normalize to lowercase
-    if (["android", "windows", "ios"].includes(device)) {
-      acc[device] = (acc[device] || 0) + 1;
-    }
-    return acc;
-  }, { android: 0, windows: 0, ios: 0 }); // Ensure default values
+  const deviceClicks = analytics.reduce(
+    (acc, data) => {
+      const device = (data.userDevice || "Unknown").toLowerCase(); // Normalize to lowercase
+      if (["android", "windows", "ios"].includes(device)) {
+        acc[device] = (acc[device] || 0) + 1;
+      }
+      return acc;
+    },
+    { android: 0, windows: 0, ios: 0 }
+  ); // Ensure default values
 
   // Convert the object into an array
   const clickDevices = [
@@ -39,8 +42,14 @@ const DashboardContainer = ({ totalClicks, links, analytics }) => {
     { device: "iOS", clicks: deviceClicks.ios },
   ];
 
-  const maxDateClicks = Math.max(...dateWiseClicksArray.map((data) => data.clicks), 1);
-  const maxDeviceClicks = Math.max(...clickDevices.map((data) => data.clicks), 1);
+  const maxDateClicks = Math.max(
+    ...dateWiseClicksArray.map((data) => data.clicks),
+    1
+  );
+  const maxDeviceClicks = Math.max(
+    ...clickDevices.map((data) => data.clicks),
+    1
+  );
 
   return (
     <div className={styles.dashboardContainer}>
@@ -54,10 +63,12 @@ const DashboardContainer = ({ totalClicks, links, analytics }) => {
           {dateWiseClicksArray.map((data, index) => (
             <div key={index} className={styles.barContainer}>
               <span>{data.date}</span>
-              <div
-                className={styles.bar}
-                style={{ width: `${(data.clicks / maxDateClicks) * 100}%` }}
-              ></div>
+              <div className={styles.bar}>
+                <div
+                  className={styles.barLength}
+                  style={{ width: `${(data.clicks / maxDateClicks) * 100}%` }}
+                ></div>
+              </div>
               <span>{data.clicks}</span>
             </div>
           ))}
@@ -68,10 +79,12 @@ const DashboardContainer = ({ totalClicks, links, analytics }) => {
           {clickDevices.map((data, index) => (
             <div key={index} className={styles.barContainer}>
               <span>{data.device}</span>
-              <div
-                className={styles.bar}
-                style={{ width: `${(data.clicks / maxDeviceClicks) * 100}%` }}
-              ></div>
+              <div className={styles.bar}>
+                <div
+                  className={styles.barLength}
+                  style={{ width: `${(data.clicks / maxDeviceClicks) * 100}%` }}
+                ></div>
+              </div>
               <span>{data.clicks}</span>
             </div>
           ))}
