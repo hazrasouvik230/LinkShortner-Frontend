@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./DashboardContainer.module.css";
 
-const DashboardContainer = ({ totalClicks, links }) => {
+const DashboardContainer = ({ totalClicks, links, analytics }) => {
   // Function to format date to 'dd-mm-yy'
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -14,31 +14,33 @@ const DashboardContainer = ({ totalClicks, links }) => {
   // Aggregate clicks by date
   const dateWiseClicks = links.reduce((acc, link) => {
     const formattedDate = formatDate(link.date);
-    if (acc[formattedDate]) {
-      acc[formattedDate] += link.clicks;
-    } else {
-      acc[formattedDate] = link.clicks;
-    }
+    acc[formattedDate] = (acc[formattedDate] || 0) + link.clicks;
     return acc;
   }, {});
 
-  // Convert the aggregated data into an array for display
   const dateWiseClicksArray = Object.keys(dateWiseClicks).map((date) => ({
     date,
     clicks: dateWiseClicks[date],
   }));
 
-  // Sample data for click devices (You may need to replace it with actual data)
+  // Dynamically count clicks per device from analytics
+  const deviceClicks = analytics.reduce((acc, data) => {
+    const device = (data.userDevice || "Unknown").toLowerCase(); // Normalize to lowercase
+    if (["android", "windows", "ios"].includes(device)) {
+      acc[device] = (acc[device] || 0) + 1;
+    }
+    return acc;
+  }, { android: 0, windows: 0, ios: 0 }); // Ensure default values
+
+  // Convert the object into an array
   const clickDevices = [
-    { device: "Mobile", clicks: 0 },
-    { device: "Desktop", clicks: 0 },
-    { device: "Tablet", clicks: 0 },
+    { device: "Android", clicks: deviceClicks.android },
+    { device: "Windows", clicks: deviceClicks.windows },
+    { device: "iOS", clicks: deviceClicks.ios },
   ];
 
-  const maxDateClicks = Math.max(
-    ...dateWiseClicksArray.map((data) => data.clicks)
-  );
-  const maxDeviceClicks = Math.max(...clickDevices.map((data) => data.clicks));
+  const maxDateClicks = Math.max(...dateWiseClicksArray.map((data) => data.clicks), 1);
+  const maxDeviceClicks = Math.max(...clickDevices.map((data) => data.clicks), 1);
 
   return (
     <div className={styles.dashboardContainer}>
